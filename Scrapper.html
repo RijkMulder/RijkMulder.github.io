@@ -11,7 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <link rel="stylesheet" href="prism.css">
 </head>
+
+
 <body class="is-preload">
 
     <!-- Page Wrapper -->
@@ -62,40 +65,40 @@
                 <div class="inner">
                     <h3>My contribution: </h3>
                 </div>
-                <!-- PlayerMovement -->
+                <!-- PlayerMovement script -->
                 <div class="inner">
-                    <details style="display: inline-block; text-align: left; user-select: none">
+                    <details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
                         <summary>Player movement</summary>
-                        <img src="path/to/your/image.gif" alt="Your GIF description"> <!-- Make gif and place here -->
-                        <p>
-                            <code><a href="https://github.com/RijkMulder/RijkMulder.github.io/blob/main/assets/ExternalScripts/PlayerMovement.cs" target="_blank">Player movement script</a></code>
-                            <pre>
-                            <code>
-            //movement
-            float x = Input.GetAxisRaw("Horizontal");
-            float z = Input.GetAxisRaw("Vertical");
-            GameObject camera = _CameraRig.transform.GetChild(0).gameObject;
-            GameObject orienter = camera.transform.GetChild(0).gameObject;
-            orienter.transform.localRotation = Quaternion.Euler(-camera.transform.eulerAngles.x, 0, 0);
-            _move = orienter.transform.right * x + orienter.transform.forward * z;
-            if (_move.magnitude > 0.3f)
-            {
-                _move.Normalize();
-                currentZ = _Wheel.transform.eulerAngles.z;
-            }
+                        <img src="assets/Gifs/PlayerMovement_showcase.gif" alt="Your GIF description" style="margin: 0; padding-bottom: 50px">
+                        <!-- basic player movement -->
+                        <h4 style="padding: 0; margin: 0">Basic movement: </h4>
+                        <pre style="padding: 0px; margin: 0"><code class="language-javascript" style="white-space: pre-wrap; user-select: text">
+    //movement
+    float x = Input.GetAxisRaw("Horizontal");
+    float z = Input.GetAxisRaw("Vertical");
+    GameObject camera = _CameraRig.transform.GetChild(0).gameObject;
+    GameObject orienter = camera.transform.GetChild(0).gameObject;
+    orienter.transform.localRotation = Quaternion.Euler(-camera.transform.eulerAngles.x, 0, 0);
+    _move = orienter.transform.right * x + orienter.transform.forward * z;
+    if (_move.magnitude > 0.3f)
+    {
+    _move.Normalize();
+    currentZ = _Wheel.transform.eulerAngles.z;
+    }
 
-            currentMoveVelocity = Vector3.SmoothDamp(currentMoveVelocity, _move * _Speed, ref moveDampVelocity, _MoveSmoothSpeed);
+    currentMoveVelocity = Vector3.SmoothDamp(currentMoveVelocity, _move * _Speed, ref moveDampVelocity, _MoveSmoothSpeed);
 
-            _Controller.Move(Vector3.down * 2 * Time.deltaTime);
+    _Controller.Move(Vector3.down * 2 * Time.deltaTime);
 
-            //only move if grounded
-            if (_Controller.isGrounded)
-            {
-                _Controller.Move(currentMoveVelocity * Time.deltaTime);
-            }
-        </code>
-    </pre>
-                        </p>
+    //only move if grounded
+    if (_Controller.isGrounded)
+    {
+    _Controller.Move(currentMoveVelocity * Time.deltaTime);
+    };
+</code></pre>
+                        <!--entire script-->
+                        <h5 style="padding-bottom: 0px; margin: 0"><a href="https://github.com/RijkMulder/RijkMulder.github.io/blob/main/assets/ExternalScripts/PlayerMovement.cs" target="_blank">View whole script.</a></h5>
+
                     </details>
                 </div>
 
@@ -141,6 +144,7 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="prism.js"></script>
 
 </body>
 </html>

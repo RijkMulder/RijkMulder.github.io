@@ -248,31 +248,33 @@ input, select, textarea {
 		padding: 0.5em 0 0.5em 2em;
 	}
 
-	code {
-		background: rgba(144, 144, 144, 0.25);
-		border-radius: 3px;
-		font-family: "Courier New", monospace;
-		font-size: 0.9em;
-		letter-spacing: 0;
-		margin: 0 0.25em;
-		padding: 0.25em 0.65em;
-	}
+code {
+	border-radius: 3px;
+	font-family: "Courier New", monospace;
+	font-size: 0.9em;
+	letter-spacing: 0;
+	margin: 0 0.25em;
+	padding: 0.25em 0.65em;
+}
 
 pre {
+	max-width: 100%;
+	overflow-x: auto;
+	word-wrap: break-word;
 	-webkit-overflow-scrolling: touch;
 	font-family: "Courier New", monospace;
 	font-size: 0.9em;
-	margin: 0 0 2em 0;
 	text-align: left;
-	white-space: pre-wrap; /* Preserve line breaks */
+	white-space: pre-line;
 }
 
-		pre code {
-			display: block;
-			line-height: 1.75em;
-			padding: 1em 1.5em;
-			overflow-x: auto;
-		}
+	pre code {
+		display: block;
+		line-height: 1.75em;
+		padding: 0em 0em;
+		overflow-x: auto;
+		background-color: #f0f0f0;
+	}
 
 	.align-left {
 		text-align: left;
@@ -4036,6 +4038,9 @@ header {
 	}
 details {
 	display: inline-block;
+	max-width: 100%;
+	white-space: pre-line;
+	margin: auto;
 }
 
 summary {
