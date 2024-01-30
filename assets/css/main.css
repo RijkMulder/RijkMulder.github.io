@@ -258,12 +258,14 @@ input, select, textarea {
 		padding: 0.25em 0.65em;
 	}
 
-	pre {
-		-webkit-overflow-scrolling: touch;
-		font-family: "Courier New", monospace;
-		font-size: 0.9em;
-		margin: 0 0 2em 0;
-	}
+pre {
+	-webkit-overflow-scrolling: touch;
+	font-family: "Courier New", monospace;
+	font-size: 0.9em;
+	margin: 0 0 2em 0;
+	text-align: left;
+	white-space: pre-wrap; /* Preserve line breaks */
+}
 
 		pre code {
 			display: block;
