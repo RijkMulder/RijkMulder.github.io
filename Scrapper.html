@@ -67,6 +67,7 @@
                 </div>
                 <!-- PlayerMovement script -->
                 <div class="inner">
+
                     <details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
                         <summary>Player movement</summary>
                         <img src="assets/Gifs/PlayerMovement_showcase.gif" alt="Your GIF description" style="margin: 0; padding-bottom: 50px; width: 100%">
@@ -82,8 +83,8 @@
     _move = orienter.transform.right * x + orienter.transform.forward * z;
     if (_move.magnitude > 0.3f)
     {
-    _move.Normalize();
-    currentZ = _Wheel.transform.eulerAngles.z;
+       _move.Normalize();
+       currentZ = _Wheel.transform.eulerAngles.z;
     }
 
     currentMoveVelocity = Vector3.SmoothDamp(currentMoveVelocity, _move * _Speed, ref moveDampVelocity, _MoveSmoothSpeed);
@@ -93,9 +94,11 @@
     //only move if grounded
     if (_Controller.isGrounded)
     {
-    _Controller.Move(currentMoveVelocity * Time.deltaTime);
+       _Controller.Move(currentMoveVelocity * Time.deltaTime);
     };
+
 </code></pre>
+                        
                         <!--entire script-->
                         <h5 style="padding-bottom: 0px; margin: 0"><a href="https://github.com/RijkMulder/RijkMulder.github.io/blob/main/assets/ExternalScripts/PlayerMovement.cs" target="_blank">View whole script.</a></h5>
 

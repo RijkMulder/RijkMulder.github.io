@@ -33,11 +33,11 @@ code[class*=language-], pre[class*=language-] {
 
 pre[class*=language-] {
     padding: 0em;
-    margin: .5em 0;
+    margin: 0.5em 0;
     overflow: auto;
-    border: .3em solid #303c44;
-    border-radius: .5em;
-    box-shadow: 1px 1px .5em red inset
+    border: 0.5em solid #303c44;
+    border-radius: 5em;
+    box-shadow: 0.5px 0.5px .5em #4b4b4be4 inset
 }
 
 :not(pre) > code[class*=language-] {
