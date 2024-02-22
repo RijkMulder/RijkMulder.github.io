@@ -28,7 +28,7 @@
                             <ul>
                                 <li><a href="index.html">Home</a></li>
                                 <li><a href="Scrapper.html">Scrapper</a></li>
-                                <li><a href="Page2.html">Proj2</a></li>
+                                <li><a href="TileHopper.html">Tile hopper</a></li>
                                 <li><a href="Page3.html">Proj3</a></li>
                             </ul>
                         </div>
@@ -44,9 +44,17 @@
                 <p>
                     Game development portfolio.<br />
                 </p>
-                <video autoplay loop muted playsinline style="width: 65%">
-                    <source src="assets/video/GameplayVideo.mp4" type="video/mp4">
-                </video>
+                <div style="margin: 0 auto; max-width: 40%; padding-top: 200px">
+                    <div style="display: inline-block; text-align: center;">
+                        <h3 style="margin-top: 10px;">Scrapper preview (most recent project)</h3>
+                        <div style="display: inline-block; border: 5px solid #000; border-radius: 10px; overflow: hidden;">
+                            <video autoplay loop muted playsinline style="max-width: 100%; vertical-align: top;">
+                                <source src="assets/video/GameplayVideo.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </section>
@@ -57,7 +65,6 @@
                 <h2>About me</h2>
 
                 <img src="images/RijkMulderSelfie.jpg" alt="Your Image" class="about-image">
-
                 <style>
                     .about-image {
                         max-width: 20%; /* Ensure the image doesn't exceed its container */
@@ -72,6 +79,9 @@
                     have worked on the player controller, because of that I know a lot about making player controllers and how to make a game satisfying, simply by having good player movement.
                     When I am not working on a game I enjoy playing games myself (duh), go to the gym and watch Formula 1.
                 </p>
+                <ul class="actions">
+                    <li><a href="mailto:mulderrijk@gmail.com" class="button" id="ContactMeButton">Contact me</a></li>
+                </ul>
             </div>
         </section>
 
@@ -100,18 +110,21 @@
             </section>
             <!--Proj 2-->
             <section class="spotlight">
-                <div class="image"><img src="images/pic02.jpg" alt="" /></div><div class="content">
+                <div class="image"><img src="images/TileHopper.png" alt="" /></div><div class="content">
                     <h2>
-                        Tortor dolore feugiat<br />
-                        elementum magna
+                        Tile hopper<br />
                     </h2>
-                    <p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+                    <p>
+                        Tile hopper is the first project I made in my second year at GLU. The project was in a game jam style, so I only had a theme: The sound of a metronome.
+                        With that I decided to make a turn based (chess like) game in which the player has to reach the other side of the board without getting spotted by the enemies, on the first tick of the
+                        metronome, the player can make a move, on the seoncd the enemies can.
+                    </p>
                     <ul class="actions">
                         <li><a href="#" class="button" id="GoToProject2Button">Go to project</a></li>
                     </ul>
                     <script>
                         document.getElementById('GoToProject2Button').addEventListener('click', function () {
-                            loadPage('Page2.html');
+                            loadPage('TileHopper.html');
                         });
                     </script>
                 </div>
