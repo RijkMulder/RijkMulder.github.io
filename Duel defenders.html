@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+	<title>Duel defenders</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<link rel="stylesheet" href="prism.css">
+</head>
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="index.html">Rijk Mulder</a></h1>
+			<nav id="nav">
+				<ul>
+					<li class="special">
+						<a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<li><a href="Scrapper.html">Scrapper</a></li>
+								<li><a href="TileHopper.html">Tile hopper</a></li>
+								<li><a href="Bug off!.html">Duel defenders</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<!--Title + gameplay video-->
+		<article id="main">
+			<div class="header-container">
+				<header style="background-image: url('images/BannerBackground.png'); background-size: cover; background-position: top; background-repeat: no-repeat; color: #ffffff; text-align: center; padding: 10px;">
+					<div class="logo-container">
+						<img src="images/DuelDefendersLogo.png" alt="Your Logo">
+					</div>
+				</header>
+			</div>
+			<section class="wrapper style5">
+				<div class="inner">
+					<h3>Gameplay video: </h3>
+					<video controls muted playsinline style="width: 100%; border-radius: 15px">
+						<source src="assets/video/DuelDefenders_Gameplay.mp4" type="video/mp4">
+					</video>
+				</div>
+			</section>
+		</article>
+
+		<!-- My contribution -->
+		<article id="My contribution">
+			<section class="wrapper style5">
+				<div class="inner">
+					<h3>My contribution: </h3>
+				</div>
+				<div class="inner">
+					<details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
+						<summary>Wave generation</summary>
+						<video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
+                            <source src="assets/video/WaveGeneration.mp4" type="video/mp4">
+                        </video>
+						<!-- Map generator -->
+						<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
+ public IEnumerator SpawnWave(int wave, float enemyAmnt, float multiplier)
+ {
+	 // wait for wave to start
+	 OnStartNewWave?.Invoke();
+	 yield return new WaitForSeconds(timeBetweenWave);
+	 float amount = enemyAmnt * ((wave * multiplier) / 2);
+							
+	 while (true)
+	 {
+		 // spawn enemies
+		 for (int i = 0; i < amount; i++)
+		 {
+			 // get random EnemyKind
+			 EnemyKind enemyType = GetEnemyKind(wave);
+			 GameObject randomEnemy = null;
+							
+			 // set randomEnemy var
+			 switch (enemyType)
+			 {
+				 case EnemyKind.Easy:
+					 randomEnemy = easy[Random.Range(0, easy.Count)];
+					 break;
+				 case EnemyKind.Medium:
+					 randomEnemy = medium[Random.Range(0, medium.Count)];
+					 break;
+				 case EnemyKind.Hard:
+					 randomEnemy = hard[Random.Range(0, hard.Count)];
+					 break;
+		     }
+							
+			 // choose random tile to place enemy on
+			 MeshRenderer mesh = randomEnemy.GetComponentInChildren<MeshRenderer>();
+			 int randomTile = Random.Range(0, spawnableTiles.Length);
+							
+			 // calculate position to spawn new enemy
+			 Vector3 offset = new Vector3(0, mesh.bounds.size.y / 0.9f, 0);
+			 Vector3 pos = spawnableTiles[randomTile].transform.position + offset;
+							
+			 // spawn spawn effect
+			 Instantiate(SpawnEffect, pos, Quaternion.Euler(-90, 0, 0));
+			 yield return new WaitForSeconds(0.3f);
+							
+			 // spwawn new enemy on calculated position
+			 GameObject newEnemy = Instantiate(randomEnemy, pos, Quaternion.identity);
+							
+			 //play audio
+			 if (Cam.WhereCamAt == CamAt.player) SpawnAudio.Play();
+							
+			 // add enemy to currentEnemies list
+			 AiBase enemy = newEnemy.GetComponent<AiBase>();
+			 currentEnemies.Add(enemy);
+							
+			 // set enemy path to a random path on the player field. (3, 6) is player field, (0, 2) is enemy field
+			 enemy.PathToFollow = Random.Range(3, 6);
+							
+			 // wait between each enemy spawned
+		     yield return new WaitForSeconds(timeBetweenEnemies - (timeBetweenEnemies / 10 * wave) + 0.1f);
+		 }
+		 break;
+	 }
+	 spawnWaveCoroutine = null;
+ }
+</code>
+                        </pre>
+
+						<!--entire script-->
+						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/007cf7945371510585dd2dc2d8e1b76c" target="_blank">View whole script.</a></h5>
+
+					</details>
+				</div>
+				<div class="inner">
+					<details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
+						<summary>Towers</summary>
+						<video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
+                            <source src="assets/video/Turret.mp4" type="video/mp4">
+                        </video>
+						<!-- Enemy behaviour -->
+						<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
+	public virtual Vector3 ClosestEnemy()
+	{
+		// start with position zero and high distance
+		Vector3 closestPosition = Vector3.zero;
+		float closestDistance = 100f;
+							
+		// loop through each enemy in enemylist (each enemy in your trigger collider)
+		foreach (AiBase enemy in EnemyList)
+		{
+			// check distance per enemy
+			float distance = Vector3.Distance(transform.position, enemy.transform.position);
+							
+			// if distance closer than closestDistance, set it to this distance
+			if (distance < closestDistance)
+			{
+				closestDistance = distance;
+				closestPosition = enemy.transform.position;
+			}
+		}
+							
+		// return position of closest enemy
+		return closestPosition + new Vector3(0, 0.5f, 0);
+	}
+
+	public virtual void Shoot()
+    {
+        // remove empty slots from EnemyList with reverse for-loop
+        for (int i = EnemyList.Count - 1; i != -1; i--) 
+        { 
+            if (EnemyList[i] == null) EnemyList.RemoveAt(i);
+        }
+
+        // if there is atleast 1 enemy
+        if (EnemyList.Count > 0)
+        {
+            // play shoot sound
+            if (IsCamInRightplace()) shootSound.Play();
+
+            // make turret lookat enemy
+            turretOrienter.transform.LookAt(ClosestEnemy());
+
+            // instantiate bullet, make it lookat enemy and set the damage
+            Bullet projectile = Instantiate(bullet, turretOrienter.transform.position, Quaternion.Euler(-90, 0, 0));
+            projectile.transform.LookAt(ClosestEnemy());
+            projectile.damage = Damage;
+        }
+    }
+
+</code>
+                        </pre>
+
+						<!--entire script-->
+						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/78110232f4ab9023cafe279a8be8dda9" target="_blank">View whole script.</a></h5>
+
+					</details>
+				</div>
+				<div class="inner">
+					<details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
+						<summary>Build tower</summary>
+						<video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
+                            <source src="assets/video/TowerPlace.mp4" type="video/mp4">
+                        </video>
+						<!-- Enemy behaviour -->
+						<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
+	private void MakeGhostTower(GameObject tower)
+	{
+		// instantiate turret
+		currentTowerRef = Instantiate(tower, new Vector3(0, -100, 0), Quaternion.identity);
+							
+		// set refrence to which side spawned turret
+		currentTowerRef.GetComponent<Turret>().WhoSpawnt(1);
+							
+		// set turret variable and set its active state to false
+		turret = currentTowerRef.GetComponent<Turret>();
+		currentTowerRef.GetComponent<IPlacable>().SetEnabled(false);
+	}
+
+	private void UpdatePos()
+	{
+		// get mousepos and make world pos raycast
+		Vector2 mousePos = Input.mousePosition;
+		Ray ray = Camera.main.ScreenPointToRay(mousePos);
+							
+		// shoot raycast from camera to mouse world pos
+		if (Physics.Raycast(ray, out RaycastHit hit, 1000, LayerMask, QueryTriggerInteraction.Ignore))
+		{
+			// if hit tile set the position to that tile + offset
+			if (hit.transform.TryGetComponent<Tile>(out Tile tile) && tile.occupent == null)
+			{
+				MeshRenderer mesh = currentTowerRef.GetComponentInChildren<MeshRenderer>();
+				Vector3 offset = new Vector3(0, mesh.bounds.size.y, 0);
+				currentTowerRef.transform.position = hit.transform.position + offset;
+			}
+		}
+	}
+
+</code>
+                        </pre>
+
+						<!--entire script-->
+						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/d1bf8e6ce558fabed8c01786819ce6d1" target="_blank">View whole script.</a></h5>
+
+					</details>
+				</div>
+			</section>
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="mailto:mulderrijk@gmail.com" class="icon solid fa-envelope" target="_blank"><span class="label">Email</span></a></li>
+				<li><a href="https://github.com/RijkMulder" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="prism.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', (event) => {
+			document.querySelectorAll('pre code').forEach((block) => {
+				hljs.highlightBlock(block);
+			});
+		});
+	</script>
+
+</body>
+</html>
