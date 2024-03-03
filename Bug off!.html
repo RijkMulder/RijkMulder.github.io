@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+	<title>Bug off!</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<link rel="stylesheet" href="prism.css">
+</head>
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="index.html">Rijk Mulder</a></h1>
+			<nav id="nav">
+				<ul>
+					<li class="special">
+						<a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<li><a href="Scrapper.html">Scrapper</a></li>
+								<li><a href="TileHopper.html">Tile hopper</a></li>
+								<li><a href="Bug off!.html">Bug off!</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<!--Title + gameplay video-->
+		<article id="main">
+			<div class="header-container">
+				<header style="background-image: url('images/BannerBackground.png'); background-size: cover; background-position: top; background-repeat: no-repeat; color: #ffffff; text-align: center; padding: 10px;">
+					<div class="logo-container">
+						<img src="images/Bug_off_-Logo.png" alt="Your Logo">
+					</div>
+				</header>
+			</div>
+			<section class="wrapper style5">
+				<div class="inner">
+					<h3>Gameplay video: </h3>
+					<video controls muted playsinline style="width: 100%; border-radius: 15px">
+						<source src="assets/video/Bug-off!_Gameplay.mp4" type="video/mp4">
+					</video>
+				</div>
+			</section>
+		</article>
+
+		<!-- My contribution -->
+		<article id="My contribution">
+			<section class="wrapper style5">
+				<div class="inner">
+					<h3>Showcase: </h3>
+				</div>
+				<div class="inner">
+					<details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
+						<summary>Map generation</summary>
+						<img src="images/TileHopper_MapGen.png" alt="Map generation" style="margin: 0; padding-bottom: 0px; width: 70%; border-radius: 15px;">
+						<!-- Map generator -->
+						<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
+    // create a grid level
+	private void MakeLevel(Vector3 pos)
+	{
+	   // adjust dirtsize value (dirt size is size of one hexagon) based on gap variable
+	   dirtSize.x += dirtSize.x * gap;
+	   dirtSize.z += dirtSize.z * gap;
+       
+	   // calculate offset
+	   Vector3 offset = new Vector3(dirtSize.x, 0, dirtSize.z * 0.85f);
+
+	   Vector3 startOffset;
+
+	   // choose which tile is the winning tile
+	   winningTilePos = new Vector2((int)Random.Range(1, gridSize.x), gridSize.y);
+
+	   // loop through rows and collumns
+	   for (int i = 0; i < gridSize.y; i++)
+	   {
+	      for (int j = 0; j < gridSize.x; j++)
+	      {
+	         // decide start offset for each row based on being odd or even
+	         if (i % 2 != 0)
+	         {
+	            startOffset = Vector3.zero;
+	         }
+	         else
+	         {
+	            startOffset = new Vector3(dirtSize.x / 2, 0, dirtSize.z * 1.7f);
+	         }
+
+			 // instantiate new tile
+	         Tile newTile = Instantiate(dirtPrefab, new Vector3(pos.x + startOffset.x + j * offset.x, pos.y, pos.z + startOffset.z + i * offset.z), Quaternion.identity).GetComponent<Tile>();
+	         tiles.Add(newTile);
+
+			 // set grid position of new tile
+	         int y = i % 2 != 0 ? i : i + 2;
+	         newTile.gridPos = new Vector2(j + 1, y);
+
+			 // check if tilepos is that of the winning tile
+	         if (newTile.gridPos == winningTilePos)
+	         {
+			    // set TileState of this tile to WinTile
+	            newTile.tileState = TileState.WinTile;
+
+			    // instantiate flag on winning tile
+	            MeshRenderer mesh = flag.GetComponent<MeshRenderer>();
+	            Vector3 flagOffset = new Vector3(0, mesh.bounds.size.y / 2, 0);
+	            Instantiate(flag, newTile.transform.position + flagOffset, Quaternion.identity);
+	         }
+	      }
+	   }
+	}
+
+</code>
+                        </pre>
+
+						<!--entire script-->
+						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/58c0827a77616c7b649215802aee2518" target="_blank">View whole script.</a></h5>
+
+					</details>
+				</div>
+				<div class="inner">
+					<details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
+						<summary>Enemy behaviour</summary>
+						<video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
+                            <source src="assets/video/TileHopperEnemyBehaviour.mp4" type="video/mp4">
+                        </video>
+						<!-- Enemy behaviour -->
+						<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
+	private Vector2 ChooseRandomTilePos()
+	{
+	   // Set chooseNewPos bool to false.
+	   chooseNewPos = false;
+
+	   // Get the grid size from the level creator.
+	   Vector2 grdSize = lvlCreator.gridSize;
+
+	   // Define possible neighbor tile positions relative to the current tile.
+	   Vector2[] NeighbourTiles =
+	   {
+	      new Vector2(-1, 1),
+	      new Vector2(0, 1),
+	      new Vector2(-1, 0),
+	      new Vector2(1, 0),
+	      new Vector2(-1, -1),
+	      new Vector2(0, -1)
+	   };
+
+	   // Check if the current row is even or odd.
+	   bool isEvenRow = gridPos.y % 2 == 0;
+
+	   // Loop until a valid tile position is found.
+	   while (true)
+	   {
+	      // Choose a random neighboring tile.
+	      int randomTile = Random.Range(0, NeighbourTiles.Length);
+	      Vector2 neighbourPos = gridPos + NeighbourTiles[randomTile];
+
+	      // Check if the neighboring position is within bounds.
+	      if (neighbourPos.y != 0)
+	      {
+	         // Adjust x-coordinate for even rows if needed. (might be magic)
+	         if (isEvenRow && (randomTile == 0 || randomTile == 1 || randomTile == 4 || randomTile == 5))
+	         neighbourPos.x += 1;
+
+	         // Check if the neighboring position is within the grid boundaries.
+	         if (neighbourPos.x <= grdSize.x && neighbourPos.y <= grdSize.y && neighbourPos.x > 0)
+	         {
+	            // Get the tile object at the neighboring position.
+	            Tile tile = gridObj.FindTileInGrid(neighbourPos).GetComponent<Tile>();
+  
+	            // Check if the tile is unoccupied and not a winning or selected tile.
+	            if (tile.tileState != TileState.Occupied && tile.tileState != TileState.Selected && tile.tileState != TileState.WinTile)
+	            {
+	               // Set the tile state to selected and return its position.
+	               Debug.Log(tile.tileState);
+	               tile.tileState = TileState.Selected;
+	               return tile.gridPos;
+	            }
+	         }
+	      }
+	   }
+	}
+
+</code>
+                        </pre>
+
+						<!--entire script-->
+						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/863d86ce848adc16ecbec91d2bef8551" target="_blank">View whole script.</a></h5>
+
+					</details>
+				</div>
+			</section>
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="mailto:mulderrijk@gmail.com" class="icon solid fa-envelope" target="_blank"><span class="label">Email</span></a></li>
+				<li><a href="https://github.com/RijkMulder" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="prism.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', (event) => {
+			document.querySelectorAll('pre code').forEach((block) => {
+				hljs.highlightBlock(block);
+			});
+		});
+	</script>
+
+</body>
+</html>
