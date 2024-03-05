@@ -100,7 +100,7 @@
 	         }
 
 			 // instantiate new tile
-	         Tile newTile = Instantiate(dirtPrefab, new Vector3(pos.x + startOffset.x + j * offset.x, pos.y, pos.z + startOffset.z + i * offset.z), Quaternion.identity).GetComponent<Tile>();
+	         Tile newTile = Instantiate(dirtPrefab, new Vector3(pos.x + startOffset.x + j * offset.x, pos.y, pos.z + startOffset.z + i * offset.z), Quaternion.identity).GetComponent&lt;Tile&gt;();
 	         tiles.Add(newTile);
 
 			 // set grid position of new tile
@@ -114,7 +114,7 @@
 	            newTile.tileState = TileState.WinTile;
 
 			    // instantiate flag on winning tile
-	            MeshRenderer mesh = flag.GetComponent<MeshRenderer>();
+	            MeshRenderer mesh = flag.GetComponent&lt;MeshRenderer&gt;();
 	            Vector3 flagOffset = new Vector3(0, mesh.bounds.size.y / 2, 0);
 	            Instantiate(flag, newTile.transform.position + flagOffset, Quaternion.identity);
 	         }
@@ -127,7 +127,11 @@
 
 						<!--entire script-->
 						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/58c0827a77616c7b649215802aee2518" target="_blank">View whole script.</a></h5>
-
+                        <p>
+							Because I decided to make the map out of hexagons, it was quite a challenge to make it spawn in correctly, luckily I figured out how to do it, though some things 
+							are kind of magic, like how the offset.z has to be multiplied by 0.85f, which I only figured out because I tried out a bunch of diffrent variables. But in the end I think it 
+							turned out quite good.
+						</p>
 					</details>
 				</div>
 				<div class="inner">
@@ -178,7 +182,7 @@
 	         if (neighbourPos.x <= grdSize.x && neighbourPos.y <= grdSize.y && neighbourPos.x > 0)
 	         {
 	            // Get the tile object at the neighboring position.
-	            Tile tile = gridObj.FindTileInGrid(neighbourPos).GetComponent<Tile>();
+	            Tile tile = gridObj.FindTileInGrid(neighbourPos).GetComponent&lt;Tile&gt;();
   
 	            // Check if the tile is unoccupied and not a winning or selected tile.
 	            if (tile.tileState != TileState.Occupied && tile.tileState != TileState.Selected && tile.tileState != TileState.WinTile)
@@ -198,7 +202,10 @@
 
 						<!--entire script-->
 						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/863d86ce848adc16ecbec91d2bef8551" target="_blank">View whole script.</a></h5>
-
+                        <p>
+							The enemy behaviour had the same problem as the map did, the damn hexagons, I had to figure out a way to make it select a new tile to move towards, but it would then obviously need to
+							know what tiles were next to it, and because the map is made out of hexagons there were six of them. I honestly don't know how this works anymore, especially the way I adjust the x-coordinate.
+						</p>
 					</details>
 				</div>
 			</section>

@@ -102,7 +102,7 @@
 		     }
 							
 			 // choose random tile to place enemy on
-			 MeshRenderer mesh = randomEnemy.GetComponentInChildren<MeshRenderer>();
+			 MeshRenderer mesh = randomEnemy.GetComponentInChildren&lt;MeshRenderer&gt;();
 			 int randomTile = Random.Range(0, spawnableTiles.Length);
 							
 			 // calculate position to spawn new enemy
@@ -116,11 +116,11 @@
 			 // spwawn new enemy on calculated position
 			 GameObject newEnemy = Instantiate(randomEnemy, pos, Quaternion.identity);
 							
-			 //play audio
+			 // play audio
 			 if (Cam.WhereCamAt == CamAt.player) SpawnAudio.Play();
 							
 			 // add enemy to currentEnemies list
-			 AiBase enemy = newEnemy.GetComponent<AiBase>();
+			 AiBase enemy = newEnemy.GetComponent&lt;AiBase&gt;();
 			 currentEnemies.Add(enemy);
 							
 			 // set enemy path to a random path on the player field. (3, 6) is player field, (0, 2) is enemy field
@@ -133,12 +133,33 @@
 	 }
 	 spawnWaveCoroutine = null;
  }
+
+ private EnemyKind GetEnemyKind(int wave)
+ {
+    // calculate easy and medium probability (hard is not necessary)
+    float easy = SpawnProbability(EnemyKind.Easy, wave);
+    float medium = SpawnProbability(EnemyKind.Medium, wave);
+
+    // random value to choose what enemy to return
+    float randomValue = Random.value;
+
+    // return the enemykind of which the probability is closest to the value created
+    if (randomValue < easy)
+        return EnemyKind.Easy;
+    else if (randomValue < easy + medium)
+        return EnemyKind.Medium;
+    else
+        return EnemyKind.Hard;
+ }
 </code>
                         </pre>
 
 						<!--entire script-->
 						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/007cf7945371510585dd2dc2d8e1b76c" target="_blank">View whole script.</a></h5>
-
+                        <p>
+							This wave generator picks which enemy to spawn by looking up what wave it is currently on and calculating the probability each enemy difficulty has and then picks a random enemy in that difficulty. 
+							This was the first time ever when I had an idea on how to implement a system and it working first time, which was super satisfying.
+						</p>
 					</details>
 				</div>
 				<div class="inner">
@@ -202,7 +223,10 @@
 
 						<!--entire script-->
 						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/78110232f4ab9023cafe279a8be8dda9" target="_blank">View whole script.</a></h5>
-
+                        <p>
+							This turret system is pretty straight forward, it checks if enemies are near it and which one is the closest, then proceeds to shoot that. This, of course, is the base turret class,
+							all turrets have their own script that inherrit from this.
+						</p>
 					</details>
 				</div>
 				<div class="inner">
@@ -219,11 +243,11 @@
 		currentTowerRef = Instantiate(tower, new Vector3(0, -100, 0), Quaternion.identity);
 							
 		// set refrence to which side spawned turret
-		currentTowerRef.GetComponent<Turret>().WhoSpawnt(1);
+		currentTowerRef.GetComponent&lt;Turret&gt;().WhoSpawnt(1);
 							
 		// set turret variable and set its active state to false
-		turret = currentTowerRef.GetComponent<Turret>();
-		currentTowerRef.GetComponent<IPlacable>().SetEnabled(false);
+		turret = currentTowerRef.GetComponent&lt;Turret&gt;();
+		currentTowerRef.GetComponent&lt;IPlacable&gt;().SetEnabled(false);
 	}
 
 	private void UpdatePos()
@@ -236,9 +260,9 @@
 		if (Physics.Raycast(ray, out RaycastHit hit, 1000, LayerMask, QueryTriggerInteraction.Ignore))
 		{
 			// if hit tile set the position to that tile + offset
-			if (hit.transform.TryGetComponent<Tile>(out Tile tile) && tile.occupent == null)
+			if (hit.transform.TryGetComponent&lt;Tile&gt;(out Tile tile) && tile.occupent == null)
 			{
-				MeshRenderer mesh = currentTowerRef.GetComponentInChildren<MeshRenderer>();
+				MeshRenderer mesh = currentTowerRef.GetComponentInChildren&lt;MeshRenderer&gt;();
 				Vector3 offset = new Vector3(0, mesh.bounds.size.y, 0);
 				currentTowerRef.transform.position = hit.transform.position + offset;
 			}
@@ -250,7 +274,11 @@
 
 						<!--entire script-->
 						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/d1bf8e6ce558fabed8c01786819ce6d1" target="_blank">View whole script.</a></h5>
-
+                        <p>
+							At first, I had a bit of trouble making this system; I didn't know how to make it compact and still give it all the functionality I wanted it to have. When I began working on this, I made it have a reference to every kind of tower,
+							but then I realised that that wasn't necessary; it only needed to have a reference to the tower that it was going to build, so what I ended up doing was making the shop buttons instantiate an instance of this class, and giving it a turret refrence which that button is supposed to spawn.
+							This fixed all my problems and made it so I could have this class as compact as I wanted it to be.
+						</p>
 					</details>
 				</div>
 			</section>
