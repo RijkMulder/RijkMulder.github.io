@@ -56,7 +56,7 @@
 				</div>
 			</section>
 		</article>
-
+		
 		<!-- My contribution -->
 		<article id="My contribution">
 			<section class="wrapper style5">
@@ -67,6 +67,13 @@
 					<details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
 						<summary>Map generation</summary>
 						<img src="images/TileHopper_MapGen.png" alt="Map generation" style="margin: 0; padding-bottom: 0px; width: 70%; border-radius: 15px;">
+						<!--entire script-->
+						<p>
+							Because I decided to make the map out of hexagons, it was quite a challenge to make it spawn in correctly, luckily I figured out how to do it, though some things 
+							are kind of magic, like how the offset.z has to be multiplied by 0.85f, which I only figured out because I tried out a bunch of diffrent variables. But in the end I think it 
+							turned out quite good.
+						</p>
+						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/58c0827a77616c7b649215802aee2518" target="_blank">View whole script.</a></h5>
 						<!-- Map generator -->
 						<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
     // create a grid level
@@ -123,23 +130,22 @@
 	}
 
 </code>
-                        </pre>
+</pre>
 
-						<!--entire script-->
-						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/58c0827a77616c7b649215802aee2518" target="_blank">View whole script.</a></h5>
-                        <p>
-							Because I decided to make the map out of hexagons, it was quite a challenge to make it spawn in correctly, luckily I figured out how to do it, though some things 
-							are kind of magic, like how the offset.z has to be multiplied by 0.85f, which I only figured out because I tried out a bunch of diffrent variables. But in the end I think it 
-							turned out quite good.
-						</p>
-					</details>
-				</div>
-				<div class="inner">
-					<details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
+</details>
+</div>
+<div class="inner">
+	<details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
 						<summary>Enemy behaviour</summary>
 						<video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
                             <source src="assets/video/TileHopperEnemyBehaviour.mp4" type="video/mp4">
                         </video>
+						<p>
+							The enemy behaviour had the same problem as the map did, the damn hexagons, I had to figure out a way to make it select a new tile to move towards, but it would then obviously need to
+							know what tiles were next to it, and because the map is made out of hexagons there were six of them. I honestly don't know how this works anymore, especially the way I adjust the x-coordinate.
+						</p>
+						<!--entire script-->
+						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/863d86ce848adc16ecbec91d2bef8551" target="_blank">View whole script.</a></h5>
 						<!-- Enemy behaviour -->
 						<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
 	private Vector2 ChooseRandomTilePos()
@@ -200,12 +206,6 @@
 </code>
                         </pre>
 
-						<!--entire script-->
-						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/863d86ce848adc16ecbec91d2bef8551" target="_blank">View whole script.</a></h5>
-                        <p>
-							The enemy behaviour had the same problem as the map did, the damn hexagons, I had to figure out a way to make it select a new tile to move towards, but it would then obviously need to
-							know what tiles were next to it, and because the map is made out of hexagons there were six of them. I honestly don't know how this works anymore, especially the way I adjust the x-coordinate.
-						</p>
 					</details>
 				</div>
 			</section>

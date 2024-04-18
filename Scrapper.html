@@ -79,6 +79,18 @@
                         <summary>Player movement</summary>
                         <img src="assets/Gifs/PlayerMovement_showcase.gif" alt="Your GIF description"
                             style="margin: 0; padding-bottom: 0px; width: 70%; border-radius: 15px">
+                            <p>
+                                I have spent quite some time making this movement satisfying, I wanted the movement to be
+                                smoothed out a little bit but what kept happening is that it felt like you were sliding on
+                                ice which is obviously not ideal, that is why I chose to only have it smoothed in the first part
+                                of the movement, which turned out to be exactly how I wanted it. It also helped that I used
+                                a character controller instead of a normal rigid body because, in my opinion, it feels a lot
+                                better.
+                            </p>
+                            <!--entire script-->
+                            <h5 style="padding-bottom: 0px; margin: 0"><a
+                                    href="https://gist.github.com/RijkMulder/55b9a39fb6885ca6ec66f6db8339a671"
+                                    target="_blank">View whole script.</a></h5>
                         <!-- basic player movement -->
                         <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
     // get keyboard inputs
@@ -114,21 +126,9 @@
 </code>
                         </pre>
 
-                        <!--entire script-->
-                        <h5 style="padding-bottom: 0px; margin: 0"><a
-                                href="https://gist.github.com/RijkMulder/55b9a39fb6885ca6ec66f6db8339a671"
-                                target="_blank">View whole script.</a></h5>
-                        <p>
-                            I have spent quite some time making this movement satisfying, I wanted the movement to be
-                            smoothed out a little bit but what kept happening is that it felt like you were sliding on
-                            ice which is obviously not ideal, that is why I chose to only have it smoothed in the first part
-                            of the movement, which turned out to be exactly how I wanted it. It also helped that I used
-                            a character controller instead of a normal rigid body because, in my opinion, it feels a lot
-                            better.
-                        </p>
                     </details>
                 </div>
-
+                
                 <!-- Camera Controller -->
                 <div class="inner">
                     <details style="display: inline-block; text-align: left; user-select: none">
@@ -136,6 +136,14 @@
                         <video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
                             <source src="assets/video/CameraController.mp4" type="video/mp4">
                         </video>
+                        <p>
+                            This is quite a simple camera controller, it simply follows the player around with a little bit of smoothing and is able to rotate 90 degrees at the click of a key.
+                            the "dummycam" is only used for screen shake effects, because the camera is smoothed, when I did a screenshake it would return to the wrong position, so the dummycam is always located at
+                            where the camera should return to.
+                        </p>
+                        <h5 style="padding-bottom: 0px; margin: 0"><a
+                                href="https://gist.github.com/RijkMulder/47e1df3b97201bcc8c41e1715af50485"
+                                target="_blank">View whole script.</a></h5>
                         <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
     private void Update()
     {
@@ -183,15 +191,7 @@
     }
 </code>
 </pre>
-                        <h5 style="padding-bottom: 0px; margin: 0"><a
-                                href="https://gist.github.com/RijkMulder/47e1df3b97201bcc8c41e1715af50485"
-                                target="_blank">View whole script.</a></h5>
 
-                        <p>
-                            This is quite a simple camera controller, it simply follows the player around with a little bit of smoothing and is able to rotate 90 degrees at the click of a key.
-                            the "dummycam" is only used for screen shake effects, because the camera is smoothed, when I did a screenshake it would return to the wrong position, so the dummycam is always located at
-                            where the camera should return to.
-                        </p>
                     </details>
                 </div>
 
@@ -202,6 +202,9 @@
                         <video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
                             <source src="assets/video/WeaponSystem.mp4" type="video/mp4">
                         </video>
+                        <h5 style="padding-bottom: 0px; margin: 0"><a
+                                href="https://gist.github.com/RijkMulder/5f52673869714485174de31f342ab364"
+                                target="_blank">View whole script</a></h5>
                         <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
     private IEnumerator Shoot(Quaternion rotation)
     {
@@ -263,9 +266,6 @@
     }
 </code></pre>
                         <p>
-                        <h5 style="padding-bottom: 0px; margin: 0"><a
-                                href="https://gist.github.com/RijkMulder/5f52673869714485174de31f342ab364"
-                                target="_blank">View whole script</a></code>
                             </p>
                     </details>
                 </div>
@@ -273,7 +273,7 @@
         </article>
         <!-- Footer -->
         <footer id="footer">
-            <ul class="icons">
+            <ul class="icons">h5
                 <li><a href="mailto:mulderrijk@gmail.com" class="icon solid fa-envelope" target="_blank"><span
                             class="label">Email</span></a></li>
                 <li><a href="https://github.com/RijkMulder" class="icon brands fa-github" target="_blank"><span
