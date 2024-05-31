@@ -35,8 +35,8 @@ pre[class*=language-] {
     padding: 0em;
     margin: 0.5em 0;
     overflow: auto;
-    border: 0.5em solid #303c44;
-    border-radius: 5em;
+    border: 0.6em solid #303c44;
+    border-radius:3em;
     box-shadow: 0.5px 0.5px .5em #4b4b4be4 inset
 }
 
