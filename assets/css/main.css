@@ -236,7 +236,9 @@ input, select, textarea {
 	hr {
 		border: 0;
 		border-bottom: solid 2px #fff;
-		margin: 3em 0;
+		margin-top: 0em;
+		margin-bottom: 3em;
+
 	}
 
 		hr.major {
