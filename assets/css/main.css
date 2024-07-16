@@ -469,11 +469,11 @@ pre {
 
 		.row.gtr-50 {
 			margin-top: 0;
-			margin-left: -0.75em;
+			margin-left: -1.5em;
 		}
 
 			.row.gtr-50 > * {
-				padding: 0 0 0 0.75em;
+				padding: 0 0 0 1.5em;
 			}
 
 			.row.gtr-50.gtr-uniform {
@@ -484,10 +484,10 @@ pre {
 					padding-top: 0.75em;
 				}
 
-		.row {
-			margin-top: 0;
-			margin-left: -1.5em;
-		}
+.row {
+	margin-top: 0;
+	margin-left: -1.5em;
+}
 
 			.row > * {
 				padding: 0 0 0 1.5em;
@@ -712,25 +712,26 @@ pre {
 
 				.row.gtr-50 {
 					margin-top: 0;
-					margin-left: -0.75em;
+					margin-left: -1.5em;
 				}
 
 					.row.gtr-50 > * {
-						padding: 0 0 0 0.75em;
+						padding: 0 0 0 1.5em;
 					}
 
 					.row.gtr-50.gtr-uniform {
-						margin-top: -0.75em;
+						margin-top: -1.5em;
 					}
 
 						.row.gtr-50.gtr-uniform > * {
-							padding-top: 0.75em;
+							padding-top: 1.5em;
 						}
 
-				.row {
-					margin-top: 0;
-					margin-left: -1.5em;
-				}
+			.row {
+				margin-top: 0;
+				margin-left: -1.5em;
+				padding: 10em 2em 1em 2em;
+			}
 
 					.row > * {
 						padding: 0 0 0 1.5em;
@@ -2139,7 +2140,34 @@ pre {
 
 			.image.fit img {
 				width: 100%;
+				border-radius: 10px;
+				transition: transform 0.5s ease, filter 0.5s ease;
+				filter: brightness(1);
 			}
+				.image.fit img:hover {
+					transform: scale(1.1); /* zoom in by 10% on hover */
+					filter: brightness(0.8);
+				}
+/*tooltip*/
+.tooltip {
+	position: absolute;
+	visibility: hidden;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	z-index: 2;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+	transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+	opacity: 0;
+}
+
+/* Show the tooltip on hover */
+.image.fit:hover + .tooltip {
+	visibility: visible;
+	opacity: 1;
+}
 
 /* List */
 
@@ -4056,4 +4084,5 @@ summary {
 	margin: 0 0 1em 0;
 	text-transform: uppercase;
 }
+
 
