@@ -720,11 +720,11 @@ pre {
 					}
 
 					.row.gtr-50.gtr-uniform {
-						margin-top: -1.5em;
+						margin-top: -10em;
 					}
 
 						.row.gtr-50.gtr-uniform > * {
-							padding-top: 1.5em;
+							padding-top: 0em;
 						}
 
 			.row {
@@ -956,17 +956,17 @@ pre {
 							padding-top: 0.375em;
 						}
 
-				.row.gtr-50 {
-					margin-top: 0;
-					margin-left: -0.75em;
-				}
-
-					.row.gtr-50 > * {
-						padding: 0 0 0 0.75em;
-					}
+						.row.gtr-50 {
+							margin-top: 0;
+							margin-left: -1.5em;
+						}
+				
+							.row.gtr-50 > * {
+								padding: 0 0 0 1.5em;
+							}
 
 					.row.gtr-50.gtr-uniform {
-						margin-top: -0.75em;
+						margin-top: -11em;
 					}
 
 						.row.gtr-50.gtr-uniform > * {
@@ -1203,15 +1203,15 @@ pre {
 
 				.row.gtr-50 {
 					margin-top: 0;
-					margin-left: -0.75em;
+					margin-left: -1.5em;
 				}
 
 					.row.gtr-50 > * {
-						padding: 0 0 0 0.75em;
+						padding: 0 0 0 1.5em;
 					}
 
 					.row.gtr-50.gtr-uniform {
-						margin-top: -0.75em;
+						margin-top: -11em;
 					}
 
 						.row.gtr-50.gtr-uniform > * {
@@ -1446,17 +1446,17 @@ pre {
 							padding-top: 0.375em;
 						}
 
-				.row.gtr-50 {
-					margin-top: 0;
-					margin-left: -0.75em;
-				}
-
-					.row.gtr-50 > * {
-						padding: 0 0 0 0.75em;
-					}
+						.row.gtr-50 {
+							margin-top: 0;
+							margin-left: -1.5em;
+						}
+				
+							.row.gtr-50 > * {
+								padding: 0 0 0 1.5em;
+							}
 
 					.row.gtr-50.gtr-uniform {
-						margin-top: -0.75em;
+						margin-top: -11em;
 					}
 
 						.row.gtr-50.gtr-uniform > * {
@@ -1691,17 +1691,16 @@ pre {
 							padding-top: 0.375em;
 						}
 
-				.row.gtr-50 {
-					margin-top: 0;
-					margin-left: -0.75em;
-				}
-
-					.row.gtr-50 > * {
-						padding: 0 0 0 0.75em;
-					}
-
+						.row.gtr-50 {
+							margin-top: 0;
+							margin-left: -1.5em;
+						}
+				
+							.row.gtr-50 > * {
+								padding: 0 0 0 1.5em;
+							}
 					.row.gtr-50.gtr-uniform {
-						margin-top: -0.75em;
+						margin-top: -11em;
 					}
 
 						.row.gtr-50.gtr-uniform > * {
@@ -2146,21 +2145,35 @@ pre {
 			}
 				.image.fit img:hover {
 					transform: scale(1.1); /* zoom in by 10% on hover */
-					filter: brightness(0.8);
+					filter: brightness(0.6);
 				}
+
 /*tooltip*/
+.col-4, .col-3 {
+	position: relative; /* Ensure the parent container is positioned relative */
+}
+
 .tooltip {
 	position: absolute;
 	visibility: hidden;
-	border: 1px solid #ccc;
-	border-radius: 5px;
 	z-index: 2;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	top: 50%; /* Center vertically */
+	left: 50%; /* Center horizontally */
+	transform: translate(-50%, -50%); /* Adjust centering */
 	pointer-events: none;
 	transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 	opacity: 0;
+	padding: 5px; /* Add padding for better appearance */
+	white-space: nowrap; /* Prevent line breaks */
+}
+
+/* Add outline to each span within the tooltip */
+.tooltip-item {
+	display: inline-block; /* Display spans side by side */
+	margin-right: 5px; /* Add spacing between items */
+	padding: 5px; /* Add padding for better appearance */
+	border: 1px solid #ccc; /* Add border to each item */
+	border-radius: 3px; /* Add border radius to each item */
 }
 
 /* Show the tooltip on hover */
@@ -4084,5 +4097,15 @@ summary {
 	margin: 0 0 1em 0;
 	text-transform: uppercase;
 }
+/* Add this media query to make project rows stack vertically on narrower screens */
+@media screen and (max-width: 768px) {
+	.row.aln-center.gtr-50.gtr-uniform {
+	   flex-direction: column; /* Make the row a column */
+	 }
+	.row.aln-center.gtr-50.gtr-uniform > div {
+	   width: 100%; /* Make each column full-width */
+	   margin-bottom: 20px; /* Add some spacing between columns */
+	 }
+   }
 
 
