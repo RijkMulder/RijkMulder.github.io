@@ -2149,7 +2149,7 @@ pre {
 				}
 
 /*tooltip*/
-.col-4, .col-3 {
+.col-4, .col-3, .col-6, .col-6-large {
 	position: relative; /* Ensure the parent container is positioned relative */
 }
 
@@ -4107,5 +4107,7 @@ summary {
 	   margin-bottom: 20px; /* Add some spacing between columns */
 	 }
    }
+
+
 
 

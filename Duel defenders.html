@@ -38,10 +38,11 @@
 			</nav>
 		</header>
 
-		<!--Title + gameplay video-->
+		<!-- Title + gameplay video -->
 		<article id="main">
 			<div class="header-container">
-				<header style="background-image: url('images/BannerBackground.png'); background-size: cover; background-position: top; background-repeat: no-repeat; color: #ffffff; text-align: center; padding: 10px;">
+				<header
+						style="background-image: url('images/BannerBackground.png'); background-size: cover; background-position: top; background-repeat: no-repeat; color: #ffffff; text-align: center; padding: 10px;">
 					<div class="logo-container">
 						<img src="images/DuelDefendersLogo.png" alt="Your Logo">
 					</div>
@@ -49,10 +50,13 @@
 			</div>
 			<section class="wrapper style5">
 				<div class="inner">
-					<h3>Gameplay video: </h3>
-					<video controls muted playsinline style="width: 100%; border-radius: 15px">
-						<source src="assets/video/DuelDefenders_Gameplay.mp4" type="video/mp4">
-					</video>
+					<h3>Trailer video: </h3>
+					<div class="video-container" style="border-radius: 15px">
+						<iframe src="https://www.youtube.com/embed/Ki3iYp7Cfnc?si=cAhUtQ6IfQMPiSAW"
+								title="YouTube video player" frameborder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowfullscreen></iframe>
+					</div>
 				</div>
 			</section>
 		</article>
@@ -238,7 +242,7 @@
 						<p>
 							At first, I had a bit of trouble making this system; I didn't know how to make it compact and still give it all the functionality I wanted it to have. When I began working on this, I made it have a reference to every kind of tower,
 							but then I realised that that wasn't necessary; it only needed to have a reference to the tower that it was going to build, so what I ended up doing was making the shop buttons instantiate an instance of this class, and giving it a turret refrence which that button is supposed to spawn.
-							This fixed all my problems and made it so I could have this class as compact as I wanted it to be.
+							This fixed all my problems and made it so that I could have this class as compact as I wanted it to be.
 						</p>
 						<!--entire script-->
 						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/d1bf8e6ce558fabed8c01786819ce6d1" target="_blank">View whole script.</a></h5>
