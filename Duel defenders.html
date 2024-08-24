@@ -20,20 +20,10 @@
 
 		<!-- Header -->
 		<header id="header">
-			<h1><a href="index.html">Rijk Mulder</a></h1>
+			<h1><a href="index.html">Home</a></h1>
 			<nav id="nav">
 				<ul>
-					<li class="special">
-						<a href="#menu" class="menuToggle"><span>Menu</span></a>
-						<div id="menu">
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="Scrapper.html">Scrapper</a></li>
-								<li><a href="TileHopper.html">Tile hopper</a></li>
-								<li><a href="Bug off!.html">Duel defenders</a></li>
-							</ul>
-						</div>
-					</li>
+					<li><a href="aboutme.html">About me</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -51,7 +41,7 @@
 			<section class="wrapper style5">
 				<div class="inner">
 					<h3>Trailer video: </h3>
-					<div class="video-container" style="border-radius: 15px">
+					<div class="iframe-container">
 						<iframe src="https://www.youtube.com/embed/Ki3iYp7Cfnc?si=cAhUtQ6IfQMPiSAW"
 								title="YouTube video player" frameborder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -60,7 +50,8 @@
 				</div>
 			</section>
 		</article>
-		
+
+
 		<!-- My contribution -->
 		<article id="My contribution">
 			<section class="wrapper style5">
@@ -68,19 +59,22 @@
 					<h3>My contribution: </h3>
 				</div>
 				<div class="inner">
-					<details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
-						<summary>Wave generation</summary>
-						<video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
-                            <source src="assets/video/WaveGeneration.mp4" type="video/mp4">
-                        </video>
-						<p>
-							This wave generator picks which enemy to spawn by looking up what wave it is currently on and calculating the probability each enemy difficulty has and then picks a random enemy in that difficulty. 
-							This was the first time ever when I had an idea on how to implement a system and it working first time, which was super satisfying.
-						</p>
-						<!--entire script-->
-						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/007cf7945371510585dd2dc2d8e1b76c" target="_blank">View whole script.</a></h5>
-						<!-- Map generator -->
-						<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
+					<h4>Wave generation</h4>
+					<div class="video-explanation-container">
+						<div class="video-container" style="width: 50%;">
+							<video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
+								<source src="assets/video/WaveGeneration.mp4" type="video/mp4">
+							</video>
+						</div>
+						<div class="explanation-container" style="width: 50%;">
+							<p>
+								The enemy AI in Duel Defenders was designed to dynamically choose the closest target and adjust its path accordingly. This required implementing a pathfinding algorithm that could handle multiple enemies simultaneously.
+							</p>
+						</div>
+					</div>
+					<hr>
+							<h5 style="padding-bottom: 10px; margin: 0"><a href="https://gist.github.com/RijkMulder/78110232f4ab9023cafe279a8be8dda9" target="_blank">View whole script.</a></h5>
+					<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
  public IEnumerator SpawnWave(int wave, float enemyAmnt, float multiplier)
  {
 	 // wait for wave to start
@@ -164,22 +158,25 @@
 </code>
 </pre>
 
-</details>
 </div>
 <div class="inner">
-	<details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
-		<summary>Towers</summary>
-		<video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
-			<source src="assets/video/Turret.mp4" type="video/mp4">
-		</video>
-		<p>
-			This turret system is pretty straight forward, it checks if enemies are near it and which one is the closest, then proceeds to shoot that. This, of course, is the base turret class,
-			all turrets have their own script that inherrit from this.
-		</p>
-		<!--entire script-->
-		<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/78110232f4ab9023cafe279a8be8dda9" target="_blank">View whole script.</a></h5>
-						<!-- Enemy behaviour -->
-						<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
+		<h4>Towers</h4>
+	<div class="video-explanation-container">
+		<div class="video-container" style="width: 50%;">
+			<video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
+				<source src="assets/video/Turret.mp4" type="video/mp4">
+			</video>
+		</div>
+		<div class="explanation-container" style="width: 50%;">
+			<p>
+				This turret system is pretty straight forward, it checks if enemies are near it and which one is the closest, then proceeds to shoot that. This, of course, is the base turret class,
+				all turrets have their own script that inherrit from this.
+			</p>
+		</div>
+	</div>
+	<hr>
+			<h5 style="padding-bottom: 10px; margin: 0"><a href="https://gist.github.com/RijkMulder/78110232f4ab9023cafe279a8be8dda9" target="_blank">View whole script.</a></h5>
+	<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
 	public virtual Vector3 ClosestEnemy()
 	{
 		// start with position zero and high distance
@@ -231,23 +228,26 @@
 </code>
                         </pre>
 
-					</details>
 				</div>
 				<div class="inner">
-					<details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
-						<summary>Build tower</summary>
-						<video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
-                            <source src="assets/video/TowerPlace.mp4" type="video/mp4">
-                        </video>
-						<p>
-							At first, I had a bit of trouble making this system; I didn't know how to make it compact and still give it all the functionality I wanted it to have. When I began working on this, I made it have a reference to every kind of tower,
-							but then I realised that that wasn't necessary; it only needed to have a reference to the tower that it was going to build, so what I ended up doing was making the shop buttons instantiate an instance of this class, and giving it a turret refrence which that button is supposed to spawn.
-							This fixed all my problems and made it so that I could have this class as compact as I wanted it to be.
-						</p>
-						<!--entire script-->
-						<h5 style="padding-bottom: 0px; margin: 0"><a href="https://gist.github.com/RijkMulder/d1bf8e6ce558fabed8c01786819ce6d1" target="_blank">View whole script.</a></h5>
-						<!-- Enemy behaviour -->
-						<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
+						<h4>Build towers</h4>
+					<div class="video-explanation-container">
+						<div class="video-container" style="width: 50%;">
+							<video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
+								<source src="assets/video/TowerPlace.mp4" type="video/mp4">
+							</video>
+						</div>
+						<div class="explanation-container" style="width: 50%;">
+							<p>
+								At first, I had a bit of trouble making this system; I didn't know how to make it compact and still give it all the functionality I wanted it to have. When I began working on this, I made it have a reference to every kind of tower,
+								but then I realised that that wasn't necessary; it only needed to have a reference to the tower that it was going to build, so what I ended up doing was making the shop buttons instantiate an instance of this class, and giving it a turret refrence which that button is supposed to spawn.
+								This fixed all my problems and made it so that I could have this class as compact as I wanted it to be.
+							</p>
+						</div>
+					</div>
+					<hr>
+							<h5 style="padding-bottom: 10px; margin: 0"><a href="https://gist.github.com/RijkMulder/d1bf8e6ce558fabed8c01786819ce6d1" target="_blank">View whole script.</a></h5>
+					<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
 	private void MakeGhostTower(GameObject tower)
 	{
 		// instantiate turret
@@ -283,7 +283,6 @@
 </code>
                         </pre>
 
-					</details>
 				</div>
 			</section>
 		</article>

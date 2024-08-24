@@ -1,11 +1,11 @@
 /* PrismJS 1.29.0
 https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript */
 code[class*=language-], pre[class*=language-] {
-    color: #fff;
+    color: #b9bad4;
     background: 0 0;
     text-shadow: 0 -.1em .2em #000;
     font-family: Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;
-    font-size: 1em;
+    font-size: 0.75em;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
@@ -18,7 +18,8 @@ code[class*=language-], pre[class*=language-] {
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
-    hyphens: none
+    hyphens: none;
+    padding: 1em;
 }
 
 @media print {
@@ -31,21 +32,22 @@ code[class*=language-], pre[class*=language-] {
     background: #212121
 }
 
+/* Increase padding for code blocks */
 pre[class*=language-] {
-    padding: 0em;
-    margin: 0.5em 0;
+    padding: 0em !important; /* Increase padding to 2em and add !important */
+    margin: 0em 0;
     overflow: auto;
     border: 0.5em solid #303c44;
-    border-radius: 5em;
-    box-shadow: 0.5px 0.5px .5em #4b4b4be4 inset
+    border-radius: 1em;
+    box-shadow: 0.5px 0.5px .5em #4b4b4be4 inset;
 }
 
 :not(pre) > code[class*=language-] {
-    padding: .15em .2em .05em;
+    padding: 0em !important; /* Increase padding to 1em and add !important */
     border-radius: .3em;
     border: .13em solid #7a6651;
     box-shadow: 1px 1px .3em -.1em red inset;
-    white-space: normal
+    white-space: normal;
 }
 
 .token.cdata, .token.comment, .token.doctype, .token.prolog {

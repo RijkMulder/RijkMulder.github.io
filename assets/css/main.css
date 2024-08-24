@@ -209,6 +209,7 @@ input, select, textarea {
 	h4 {
 		font-size: 1em;
 		line-height: 1.5em;
+		padding-top: 10px;
 	}
 
 	h5 {
@@ -4046,24 +4047,34 @@ pre {
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
-.video-container {
+/* Specific class for iframe container */
+.iframe-container {
 	position: relative;
 	width: 100%;
-	padding-bottom: 56.25%; /* 16:9 aspect ratio, adjust as needed */
+	padding-bottom: 56.25%; /* 16:9 aspect ratio */
+	height: 100%;
 	overflow: hidden;
 }
 
-	.video-container iframe {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
+.iframe-container iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+}
+.video-container {
+	position: relative;
+	width: 100%;
+	height: auto; /* Adjust height as needed */
+	overflow: hidden;
+}
 .header-container {
 	position: relative;
 	width: 100%;
 	max-width: 100%;
+	height: 100%;
 	overflow: hidden;
 }
 
@@ -4108,6 +4119,22 @@ summary {
 	 }
    }
 
+.video-explanation-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 20px;
+}
 
+.explanation-container {
+	padding: 10px;
+}
+
+hr {
+	border: 0;
+	height: 1px;
+	background: #ccc;
+	margin: 20px 0;
+}
 
 

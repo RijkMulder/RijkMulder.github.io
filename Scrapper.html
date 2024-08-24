@@ -25,20 +25,10 @@
 
         <!-- Header -->
         <header id="header">
-            <h1><a href="index.html">Rijk Mulder</a></h1>
+            <h1><a href="index.html">Home</a></h1>
             <nav id="nav">
                 <ul>
-                    <li class="special">
-                        <a href="#menu" class="menuToggle"><span>Menu</span></a>
-                        <div id="menu">
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="Scrapper.html">Scrapper</a></li>
-                                <li><a href="TileHopper.html">Tile hopper</a></li>
-                                <li><a href="Bug off!.html">Duel defenders</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    <li><a href="aboutme.html">About me</a></li>
                 </ul>
             </nav>
         </header>
@@ -47,7 +37,7 @@
         <article id="main">
             <div class="header-container">
                 <header
-                    style="background-image: url('images/BannerBackground.png'); background-size: cover; background-position: top; background-repeat: no-repeat; color: #ffffff; text-align: center; padding: 10px;">
+                        style="background-image: url('images/BannerBackground.png'); background-size: cover; background-position: top; background-repeat: no-repeat; color: #ffffff; text-align: center; padding: 10px;">
                     <div class="logo-container">
                         <img src="images/ScrapperLogo.png" alt="Your Logo">
                     </div>
@@ -56,11 +46,11 @@
             <section class="wrapper style5">
                 <div class="inner">
                     <h3>Trailer video: </h3>
-                    <div class="video-container" style="border-radius: 15px">
+                    <div class="iframe-container">
                         <iframe src="https://www.youtube.com/embed/_ITL_dmVX-E?si=oCYurnRZpVQbaZhz"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
                     </div>
                 </div>
             </section>
@@ -74,11 +64,13 @@
                 </div>
                 <!-- PlayerMovement script -->
                 <div class="inner">
-
-                    <details style="display: inline-block; text-align: left; user-select: none; margin: 0; padding: 0">
-                        <summary>Player movement</summary>
-                        <img src="assets/Gifs/PlayerMovement_showcase.gif" alt="Your GIF description"
-                            style="margin: 0; padding-bottom: 0px; width: 70%; border-radius: 15px">
+                    <h4>Player movement</h4>
+                    <div class="video-explanation-container">
+                        <div class="video-container" style="width: 50%;">
+                            <img src="assets/Gifs/PlayerMovement_showcase.gif" alt="Your GIF description"
+                                 style="margin: 0; padding-bottom: 0px; width: 100%; border-radius: 15px">
+                        </div>
+                        <div class="explanation-container" style="width: 50%;">
                             <p>
                                 I have spent quite some time making this movement satisfying, I wanted the movement to be
                                 smoothed out a little bit but what kept happening is that it felt like you were sliding on
@@ -87,12 +79,15 @@
                                 a character controller instead of a normal rigid body because, in my opinion, it feels a lot
                                 better.
                             </p>
-                            <!--entire script-->
-                            <h5 style="padding-bottom: 0px; margin: 0"><a
-                                    href="https://gist.github.com/RijkMulder/55b9a39fb6885ca6ec66f6db8339a671"
-                                    target="_blank">View whole script.</a></h5>
-                        <!-- basic player movement -->
-                        <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
+                        </div>
+                    </div>
+                    <hr>
+                    <!--entire script-->
+                    <h5 style="padding-bottom: 10px; margin: 0"><a
+                            href="https://gist.github.com/RijkMulder/55b9a39fb6885ca6ec66f6db8339a671"
+                            target="_blank">View whole script.</a></h5>
+                    <!-- basic player movement -->
+                    <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
     // get keyboard inputs
     float x = Input.GetAxisRaw("Horizontal");
     float z = Input.GetAxisRaw("Vertical");
@@ -124,27 +119,31 @@
        _Controller.Move(currentMoveVelocity * Time.deltaTime);
     };
 </code>
-                        </pre>
-
-                    </details>
+            </pre>
                 </div>
-                
+
                 <!-- Camera Controller -->
                 <div class="inner">
-                    <details style="display: inline-block; text-align: left; user-select: none">
-                        <summary>Camera controller</summary>
-                        <video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
-                            <source src="assets/video/CameraController.mp4" type="video/mp4">
-                        </video>
-                        <p>
-                            This is quite a simple camera controller, it simply follows the player around with a little bit of smoothing and is able to rotate 90 degrees at the click of a key.
-                            the "dummycam" is only used for screen shake effects, because the camera is smoothed, when I did a screenshake it would return to the wrong position, so the dummycam is always located at
-                            where the camera should return to.
-                        </p>
-                        <h5 style="padding-bottom: 0px; margin: 0"><a
-                                href="https://gist.github.com/RijkMulder/47e1df3b97201bcc8c41e1715af50485"
-                                target="_blank">View whole script.</a></h5>
-                        <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
+                    <h4>Camera controller</h4>
+                    <div class="video-explanation-container">
+                        <div class="video-container" style="width: 50%;">
+                            <video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
+                                <source src="assets/video/CameraController.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="explanation-container" style="width: 50%;">
+                            <p>
+                                This is quite a simple camera controller, it simply follows the player around with a little bit of smoothing and is able to rotate 90 degrees at the click of a key.
+                                the "dummycam" is only used for screen shake effects, because the camera is smoothed, when I did a screenshake it would return to the wrong position, so the dummycam is always located at
+                                where the camera should return to.
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <h5 style="padding-bottom: 10px; margin: 0"><a
+                            href="https://gist.github.com/RijkMulder/47e1df3b97201bcc8c41e1715af50485"
+                            target="_blank">View whole script.</a></h5>
+                    <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
     private void Update()
     {
         // check distance to player
@@ -190,22 +189,26 @@
        }
     }
 </code>
-</pre>
-
-                    </details>
+            </pre>
                 </div>
 
                 <!-- Player shoot -->
                 <div class="inner">
-                    <details style="display: inline-block; text-align: left; user-select: none">
-                        <summary>Player weapon system</summary>
-                        <video autoplay loop muted playsinline style="width: 70%; border-radius: 15px">
-                            <source src="assets/video/WeaponSystem.mp4" type="video/mp4">
-                        </video>
-                        <h5 style="padding-bottom: 0px; margin: 0"><a
-                                href="https://gist.github.com/RijkMulder/5f52673869714485174de31f342ab364"
-                                target="_blank">View whole script</a></h5>
-                        <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
+                    <h4>Player weapon system</h4>
+                    <div class="video-explanation-container">
+                        <div class="video-container" style="width: 50%;">
+                            <video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
+                                <source src="assets/video/WeaponSystem.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="explanation-container" style="width: 50%;">
+                        </div>
+                    </div>
+                    <hr>
+                    <h5 style="padding-bottom: 10px; margin: 0"><a
+                            href="https://gist.github.com/RijkMulder/5f52673869714485174de31f342ab364"
+                            target="_blank">View whole script</a></h5>
+                    <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
     private IEnumerator Shoot(Quaternion rotation)
     {
        _shooting = true;
@@ -239,7 +242,7 @@
           {
              Tuple&lt;Vector3[], Quaternion[]&gt; result = MakeBulletSpread(_WeaponType.BulletAmount, _WeaponType.BulletSpreadAmount, _GunHolder.transform.position, rotation);
              Vector3[] spreadPositions = result.Item1;
-             Quaternion[] spreadRotations = result.Item2;
+             Quaternion[] spreadRotations are result.Item2;
 
              for (int i = 0; i < _WeaponType.BulletAmount; i++)
              {
@@ -265,9 +268,6 @@
        }
     }
 </code></pre>
-                        <p>
-                            </p>
-                    </details>
                 </div>
             </section>
         </article>
