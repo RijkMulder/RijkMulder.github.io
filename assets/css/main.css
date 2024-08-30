@@ -4077,7 +4077,12 @@ pre {
 	height: 100%;
 	overflow: hidden;
 }
-
+.header-container header {
+	background-image: url('images/BannerBackground.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
 header {
 	width: 100%;
 	height: 100%;

@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f3de36d6-ab71-4723-8687-25bf6dc1288b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Duel defenders.html" beforeDir="false" afterPath="$PROJECT_DIR$/Duel defenders.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scrapper.html" beforeDir="false" afterPath="$PROJECT_DIR$/Scrapper.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TileHopper.html" beforeDir="false" afterPath="$PROJECT_DIR$/TileHopper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aboutme.html" beforeDir="false" afterPath="$PROJECT_DIR$/aboutme.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prism.css" beforeDir="false" afterPath="$PROJECT_DIR$/prism.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Duel Defenders.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Duel Defenders.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +52,8 @@
       <workItem from="1723806764639" duration="1915000" />
       <workItem from="1724088220330" duration="618000" />
       <workItem from="1724502583956" duration="5699000" />
+      <workItem from="1724707585239" duration="1021000" />
+      <workItem from="1725018747907" duration="6280000" />
     </task>
     <servers />
   </component>
