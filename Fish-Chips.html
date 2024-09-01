@@ -74,60 +74,54 @@
                 </div>
                 <!-- PlayerMovement script -->
                 <div class="inner">
-                    <h4>Player movement</h4>
+                    <h4>Fishing minigame</h4>
                     <div class="video-explanation-container">
                         <div class="video-container" style="width: 50%;">
-                            <img src="assets/Gifs/PlayerMovement_showcase.gif" alt="Your GIF description"
-                                 style="margin: 0; padding-bottom: 0px; width: 100%; border-radius: 15px">
+                            <video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
+                                <source src="assets/video/FishMinigame.mp4" type="video/mp4">
+                            </video>
                         </div>
                         <div class="explanation-container" style="width: 50%;">
                             <p>
-                                I have spent quite some time making this movement satisfying, I wanted the movement to be
-                                smoothed out a little bit but what kept happening is that it felt like you were sliding on
-                                ice which is obviously not ideal, that is why I chose to only have it smoothed in the first part
-                                of the movement, which turned out to be exactly how I wanted it. It also helped that I used
-                                a character controller instead of a normal rigid body because, in my opinion, it feels a lot
-                                better.
+                                I have spent a lot of time making this minigame, especially figuring out how to make the hit-zones (I ended
+                                up making a custom mesh for them). 
+                                It was also a challenge to select what fish you would catch according to their rarities, to make less rare fish
+                                appear more.
                             </p>
                         </div>
                     </div>
                     <hr>
                     <!--entire script-->
                     <h5 style="padding-bottom: 10px; margin: 0"><a
-                            href="https://gist.github.com/RijkMulder/55b9a39fb6885ca6ec66f6db8339a671"
+                            href="https://gist.github.com/RijkMulder/b78016166bd4b1fa3167586529a4f784"
                             target="_blank">View whole script.</a></h5>
                     <!-- basic player movement -->
                     <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
-    // get keyboard inputs
-    float x = Input.GetAxisRaw("Horizontal");
-    float z = Input.GetAxisRaw("Vertical");
-
-    // get orienter gameobject refrence
-    GameObject camera = _CameraRig.transform.GetChild(0).gameObject;
-    GameObject orienter = camera.transform.GetChild(0).gameObject;
-
-    // set "move" (vector3) var to be relative to orienter
-    orienter.transform.localRotation = Quaternion.Euler(-camera.transform.eulerAngles.x, 0, 0);
-    _move = orienter.transform.right * x + orienter.transform.forward * z;
-
-    // only smooth movement in the first part of the linear keyboard input
-    if (_move.magnitude > 0.3f)
+    private int GetFishType()
     {
-       _move.Normalize();
-       currentZ = _Wheel.transform.eulerAngles.z;
-    }
-
-    // set velocity
-    currentMoveVelocity = Vector3.SmoothDamp(currentMoveVelocity, _move * _Speed, ref moveDampVelocity, _MoveSmoothSpeed);
-
-    // apply gravity
-    _Controller.Move(Vector3.down * 2 * Time.deltaTime);
-
-    //only move if grounded
-    if (_Controller.isGrounded)
-    {
-       _Controller.Move(currentMoveVelocity * Time.deltaTime);
-    };
+        // get probabilities
+        List<float> probabilities = new List<float>();
+        foreach (KeyValuePair<EFishType, int> fish in FishingRod.instance.fishProbabilities)
+        {
+            probabilities.Add(fish.Value);
+        }
+                        
+        // total probability
+        float totalProbability = 0f;
+        foreach (float f in probabilities) totalProbability += f;
+                        
+        // random
+        float randomValue = UnityEngine.Random.value * totalProbability;
+                        
+        // find value
+        float crawlingValue = 0f;
+        for (int i = 0; i < probabilities.Count; i++)
+        {
+            crawlingValue += probabilities[i];
+            if (crawlingValue >= randomValue) return i;
+        }
+        return -1;
+     }
 </code>
             </pre>
                 </div>
