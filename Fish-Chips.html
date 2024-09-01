@@ -50,7 +50,7 @@
                         Fish & Chips is a simple 2d fishing game with a little twist, the fish you catch turn into gambling chips. Which you can use to buy upgrades.
                     </p>
                     <p>
-                        This project was in collaboration with 3 other students from Finland, and one fellow Dutch student, for a total of 2 developers and 3 artists.
+                        This project was made in collaboration with 3 students from Finland, and one fellow Dutch student (besides me), for a total of 2 developers and 3 artists.
                         I had a lot of fun working with international students, it was a great experience and I learned a lot from it.
                     </p>
                     
@@ -62,6 +62,7 @@
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowfullscreen></iframe>
                     </div>
+<!--                    <iframe src="webgl/index.html" width="960" height="600" style="border:none;"></iframe>-->
                 </div>
             </section>
         </article>
@@ -72,7 +73,7 @@
                 <div class="inner">
                     <h3>My contribution: </h3>
                 </div>
-                <!-- PlayerMovement script -->
+                <!-- Fishing minigame -->
                 <div class="inner">
                     <h4>Fishing minigame</h4>
                     <div class="video-explanation-container">
@@ -100,8 +101,8 @@
     private int GetFishType()
     {
         // get probabilities
-        List<float> probabilities = new List<float>();
-        foreach (KeyValuePair<EFishType, int> fish in FishingRod.instance.fishProbabilities)
+        List&lt;float&gt; probabilities = new List&lt;float&gt;();
+        foreach (KeyValuePair&lt;EFishType, int&gt; fish in FishingRod.instance.fishProbabilities)
         {
             probabilities.Add(fish.Value);
         }
@@ -126,151 +127,142 @@
             </pre>
                 </div>
 
-                <!-- Camera Controller -->
+                <!-- Time management -->
                 <div class="inner">
-                    <h4>Camera controller</h4>
+                    <h4>Time management</h4>
                     <div class="video-explanation-container">
                         <div class="video-container" style="width: 50%;">
                             <video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
-                                <source src="assets/video/CameraController.mp4" type="video/mp4">
+                                <source src="assets/video/TimeManager.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="explanation-container" style="width: 50%;">
                             <p>
-                                This is quite a simple camera controller, it simply follows the player around with a little bit of smoothing and is able to rotate 90 degrees at the click of a key.
-                                the "dummycam" is only used for screen shake effects, because the camera is smoothed, when I did a screenshake it would return to the wrong position, so the dummycam is always located at
-                                where the camera should return to.
+                                I have made the time management using the Unity TimeSpan, which sends an update through the EventManager every few (in game) minutes, which runs the entire game.
                             </p>
                         </div>
                     </div>
                     <hr>
                     <h5 style="padding-bottom: 10px; margin: 0"><a
-                            href="https://gist.github.com/RijkMulder/47e1df3b97201bcc8c41e1715af50485"
+                            href="https://gist.github.com/RijkMulder/174a3c2d8225717aefdfd77823df65ad"
                             target="_blank">View whole script.</a></h5>
                     <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
     private void Update()
     {
-        // check distance to player
-       float distance = Vector3.Distance(transform.position, _PlayerTransform.position);
+        if (!doTime) return; 
 
-       // set camera move speed
-       _MoveSpeed *= distance / _SmoothTime;
+        // calculate current time
+        currentTime += Time.deltaTime * (60 / minutesPerDay * (dayEndTime - dayStartTime));
+        span = baseSpan + TimeSpan.FromSeconds(currentTime);
 
-       // only move when the distance to the player is too large
-       if (distance > _MaxDistanceBeforeMoving)
-       {
-          _isMoving = true;
-       }
+        // update time when necessary
+        if (span.Minutes % minutesPerUpdate == 0) EventManager.OnTimeChanged(span);
 
-       if (_isMoving)
-       {
-          // set target position
-          Vector3 targetPos = _PlayerTransform.position + new Vector3(0, _Offset.y, 0);
-
-          // smoothly go to target position
-          transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _velocity, _SmoothTime, _MoveSpeed);
-          _DummyCam.transform.position = targetPos;
-
-          // know when to stop moving
-          if (_isMoving && distance < _MaxDistanceBeforeMoving + 0.1f)
-          {
-             _isMoving = false;
-          }
-       }
-
-       // move the camera when one of the buttons is clicked
-       if ((Input.GetKeyDown(_CamMoveKeys[0]) || Input.GetKeyDown(_CamMoveKeys[1])) && !_camMoveing)
-       {
-          // set direction for movement and start coroutine
-          int direction = (Input.GetKeyDown(_CamMoveKeys[0]) ? 1 : (Input.GetKeyDown(_CamMoveKeys[1]) ? -1 : 0));
-          StartCoroutine(MoveCam(direction));
-       }
-
-       // reset position
-       if (Input.GetKeyDown(_CamResetKey))
-       {
-          StartCoroutine(ReturnToOriginalPos());
-       }
+        // end the day
+        if (span.Hours == dayEndTime)
+        {
+            EventManager.OnDayEnd(span.Days);
+            baseSpan += new TimeSpan(1, 0, 0, 0);
+            currentTime = 0;
+        }
     }
 </code>
             </pre>
                 </div>
 
-                <!-- Player shoot -->
+                <!-- Inventory -->
                 <div class="inner">
-                    <h4>Player weapon system</h4>
+                    <h4>Inventory</h4>
                     <div class="video-explanation-container">
                         <div class="video-container" style="width: 50%;">
-                            <video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
-                                <source src="assets/video/WeaponSystem.mp4" type="video/mp4">
-                            </video>
+                            <img src="images/Fish-Chips_Inventory.png" alt="Inventory" style="width: 100%; border-radius: 15px;">
                         </div>
                         <div class="explanation-container" style="width: 50%;">
+                            <p>
+                                The inventory consists of 2 parts: the daily inventory, and the all-time inventory.
+                                The trickiest part was making the bit for the daily inventory, which grouped all the fish of the same rarity together, which luckily
+                                I managed to figure out how to do. And obviously the all-time inventory was very easy, since it is just a list of all the fish you have caught.
+                            </p>
                         </div>
                     </div>
                     <hr>
                     <h5 style="padding-bottom: 10px; margin: 0"><a
-                            href="https://gist.github.com/RijkMulder/5f52673869714485174de31f342ab364"
+                            href="https://gist.github.com/RijkMulder/2d203907a044773ea2b718f5e1dfba14"
                             target="_blank">View whole script</a></h5>
                     <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
-    private IEnumerator Shoot(Quaternion rotation)
-    {
-       _shooting = true;
+    public void Initialize()
+        {
+            // find all fish            
+            List&lt;FishType&gt; inv = new List&lt;FishType&gt;();
+            foreach (KeyValuePair&lt;FishType, List&lt;FishStats&gt;&gt; f in Inventory.instance.inventoryDictionary)
+            {
+                for (int i = 0; i < f.Value.Count; i++)
+                {
+                    inv.Add(f.Key);
+                }
+            }
 
-       //shake cam
-       _gameManager.CameraShake(0.06f);
+            // get all rarities            
+            Rarity[] rarities = FishingRod.instance.rarities;
+            EFishType[] types = rarities.Select(r => r.rarity).ToArray();
 
-       //normal weaponns
-       if (!_WeaponType.IsSpecialWeapon)
-       {
-          Quaternion rot = _GunHolder.transform.rotation;
-          //single shot
-          if (_WeaponType.BulletAmount == 1 && !_WeaponType.BurstFireWeapon)
-          {
-             GameObject flash = Instantiate(_MuzzleFlash, _GunHolder.transform.position, rot * Quaternion.Euler(0, -90, 0));
-             Destroy(flash, 0.1f);
-             if (_WeaponType.AmmoType == WeaponShootBehaviours.BulletType.pistol)
-             {
-                FindObjectOfType&lt;Audio&gt;().PlayPistolShot();
-             }
-             else
-             {
-                FindObjectOfType&lt;Audio&gt;().PlayARShot();
-             }
-             GameObject bullet = Instantiate(_BulletPrefab, _GunHolder.transform.position, rotation);
-             _BulletAmount--;
-          }
+            // loop through all fish types and group them            
+            for (int i = 0; i < types.Length; i++)
+            {
+                // get all fish of current type        
+                Dictionary&lt;string, int&gt; fishByType = inv
+                    .Where(f => f.type == types[i])
+                    .GroupBy(f => f.fishName)
+                    .ToDictionary(g => g.Key, g => g.Count());
 
-          //shotgun shot
-          else if (_WeaponType.BulletAmount > 1)
-          {
-             Tuple&lt;Vector3[], Quaternion[]&gt; result = MakeBulletSpread(_WeaponType.BulletAmount, _WeaponType.BulletSpreadAmount, _GunHolder.transform.position, rotation);
-             Vector3[] spreadPositions = result.Item1;
-             Quaternion[] spreadRotations are result.Item2;
+                // generate inventory (ui) item for current fish type        
+                foreach (var (name, count) in fishByType)
+                {
+                    FishType fishType = inv.First(f => f.fishName == name);
+                    GenerateItem(fishType, count, rarities[i]);
+                }
+            }
+        }
+</code></pre>
+                </div>
+                <!-- Logbook -->
+                <div class="inner">
+                    <h4>Logbook</h4>
+                    <div class="video-explanation-container">
+                        <div class="video-container" style="width: 50%;">
+                            <video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
+                                <source src="assets/video/Logbook.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="explanation-container" style="width: 50%;">
+                            <p>
+                                Making the logbook was quite an interesting challenge, since I only had one week left to make it and finish the rest of the game.
+                                But luckily I managed to make it in time, albeit with not the prettiest code. But that's just how it is in the last week of development.
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <h5 style="padding-bottom: 10px; margin: 0"><a
+                            href="https://gist.github.com/RijkMulder/b20af60ac6fef839ae50a79e40414b12"
+                            target="_blank">View whole script</a></h5>
+                    <pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap; user-select: text">
+    public void UpdateItem(FishType key, FishStats stats)
+        {
+            // update data
+            (FishStats, int) currentItem = fishDictionary[key];
+            (FishStats, int) newItem = (currentItem.Item1, currentItem.Item2 + 1);
+            fishDictionary[key] = newItem;
 
-             for (int i = 0; i < _WeaponType.BulletAmount; i++)
-             {
-                GameObject bullet = Instantiate(_BulletPrefab, spreadPositions[i], spreadRotations[i]);
-             }
-             FindObjectOfType&lt;Audio&gt;().PlayShotgunShot();
-             yield return new WaitForSeconds(0.05f);
-             GameObject flash = Instantiate(_MuzzleFlash, _GunHolder.transform.position, rot * Quaternion.Euler(0, 0, 0));
-             Destroy(flash, 0.1f);
-             _BulletAmount--;
-          }
-
-          //burst shot
-          else if (_WeaponType.BurstFireWeapon)
-          {
-             for (int i = 0; i < _WeaponType.BurstFireShotAmount; i++)
-             {
-                GameObject bullet = Instantiate(_BulletPrefab, _GunHolder.transform.position, rotation);
-                yield return new WaitForSeconds(_WeaponType.BurstTimeBetweenShot);
-                _BulletAmount--;
-             }
-          }
-       }
-    }
+            // update page
+            foreach (LogbookPage page in LogBookPageManager.instance.pages)
+            {
+                if (page.type == null) continue;
+                if (page.type == key)
+                {
+                    page.UpdatePage(key, newItem.Item2, stats);
+                }
+            }
+        }
 </code></pre>
                 </div>
             </section>
