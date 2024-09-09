@@ -2145,7 +2145,7 @@ pre {
 				filter: brightness(1);
 			}
 				.image.fit img:hover {
-					transform: scale(1.1); /* zoom in by 10% on hover */
+					transform: scale(1.05); /* zoom in by 10% on hover */
 					filter: brightness(0.6);
 				}
 
