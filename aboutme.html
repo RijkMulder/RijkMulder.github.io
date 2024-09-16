@@ -16,7 +16,7 @@
 	</noscript>
 </head>
 
-<body class="is-preload">
+<body class="is-preload" onload="displayAge()">
 
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
@@ -36,14 +36,14 @@
 			<section class="wrapper style5">
 				<div class="inner">
 					<div class="section">
-						<div class="row">
+						<div class="row" style="padding: 1em 2em 1em 2em">
 							<div class="col-4 col-12-medium">
 								<img src="images/RijkMulderSelfie.jpg" alt="Your Image" class="about-image"
 									style="border-radius: 15px; width: 100%;">
 							</div>
 							<div class="col-8 col-12-medium">
-								<p>Hi! My name is Rijk Mulder, I currently study at the Graphic Lyceum in Utrecht.
-									I've always been
+								<p>Hi! My name is Rijk Mulder, I am <span id="age"></span> years old and I currently study at the Graphic Lyceum in Utrecht.
+									I have always been
 									very passionate about games, ever since I was 7 years old and played Minecraft
 									for the first time.</p>
 
@@ -64,7 +64,7 @@
 							</div>
 						</div>
 						<hr>
-						<div class="row">
+						<div class="row" style="padding: 1em 2em 1em 2em">
 							<div class="col-4 col-12-medium">
 								<h5>Hard skills</h5>
 								<ul>
@@ -118,6 +118,25 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script>
+        function calculateAge(birthday) {
+            const birthDate = new Date(birthday);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDifference = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+        }
+
+        function displayAge() {
+            const birthday = '2006-07-04'; // Replace with your birth date (YYYY-MM-DD)
+            const ageElement = document.getElementById('age');
+            ageElement.textContent = calculateAge(birthday);
+        }
+    </script>
 
 </body>
 
