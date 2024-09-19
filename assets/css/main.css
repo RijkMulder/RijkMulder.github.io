@@ -2157,7 +2157,7 @@ pre {
 	position: absolute;
 	visibility: hidden;
 	z-index: 2;
-	top: 50%; /* Center vertically */
+	top: 55%; /* Center vertically */
 	left: 50%; /* Center horizontally */
 	transform: translate(-50%, -50%); /* Adjust centering */
 	pointer-events: none;
