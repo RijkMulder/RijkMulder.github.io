@@ -4125,6 +4125,7 @@ summary {
 
 .video-explanation-container {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: flex-start;
 	margin-bottom: 20px;
@@ -4132,6 +4133,15 @@ summary {
 
 .explanation-container {
 	padding: 10px;
+}
+.video-container, .explanation-container {
+	width: 50%;
+}
+
+@media (max-width: 768px) {
+	.video-container, .explanation-container {
+		width: 100%;
+	}
 }
 
 hr {
