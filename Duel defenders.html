@@ -76,7 +76,7 @@
 								<source src="assets/video/WaveGeneration.mp4" type="video/mp4">
 							</video>
 						</div>
-						<div class="explanation-container" style="width: 50%;">
+						<div class="explanation-container">
 							<p>
 								The enemy AI in Duel Defenders was designed to dynamically choose the closest target and adjust its path accordingly. This required implementing a pathfinding algorithm that could handle multiple enemies simultaneously.
 							</p>
@@ -177,7 +177,7 @@
 				<source src="assets/video/Turret.mp4" type="video/mp4">
 			</video>
 		</div>
-		<div class="explanation-container" style="width: 50%;">
+		<div class="explanation-container">
 			<p>
 				This turret system is pretty straight forward, it checks if enemies are near it and which one is the closest, then proceeds to shoot that. This, of course, is the base turret class,
 				all turrets have their own script that inherrit from this.
@@ -247,7 +247,7 @@
 								<source src="assets/video/TowerPlace.mp4" type="video/mp4">
 							</video>
 						</div>
-						<div class="explanation-container" style="width: 50%;">
+						<div class="explanation-container">
 							<p>
 								At first, I had a bit of trouble making this system; I didn't know how to make it compact and still give it all the functionality I wanted it to have. When I began working on this, I made it have a reference to every kind of tower,
 								but then I realised that that wasn't necessary; it only needed to have a reference to the tower that it was going to build, so what I ended up doing was making the shop buttons instantiate an instance of this class, and giving it a turret refrence which that button is supposed to spawn.

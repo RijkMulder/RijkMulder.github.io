@@ -160,7 +160,7 @@ input, select, textarea {
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 0 0 0 0;]]
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -4128,7 +4128,6 @@ summary {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: flex-start;
-	margin-bottom: 20px;
 }
 @media (max-width: 600px) {
 	.video-explanation-container {
@@ -4142,7 +4141,9 @@ summary {
 }
 
 .explanation-container {
-	padding: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
 }
 .video-container, .explanation-container {
 	width: 50%;
