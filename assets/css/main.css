@@ -4130,6 +4130,16 @@ summary {
 	align-items: flex-start;
 	margin-bottom: 20px;
 }
+@media (max-width: 600px) {
+	.video-explanation-container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.video-container, .explanation-container {
+		width: 100%;
+	}
+}
 
 .explanation-container {
 	padding: 10px;
