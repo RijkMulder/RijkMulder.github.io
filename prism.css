@@ -29,7 +29,7 @@ code[class*=language-], pre[class*=language-] {
 }
 
 :not(pre) > code[class*=language-], pre[class*=language-] {
-    background: #212121
+    background: #000000
 }
 
 /* Increase padding for code blocks */
@@ -51,7 +51,7 @@ pre[class*=language-] {
 }
 
 .token.cdata, .token.comment, .token.doctype, .token.prolog {
-    color: #549b1d
+    color: #96e956
 }
 
 .token.punctuation {
@@ -75,7 +75,7 @@ pre[class*=language-] {
 }
 
 .token.atrule, .token.attr-value, .token.keyword {
-    color: #d1939e
+    color: #f34666
 }
 
 .token.important, .token.regex {
