@@ -40,17 +40,30 @@
 			</div>
 			<section class="wrapper style5">
 				<div class="inner">
-					<!-- Description -->
-					<h3>About Duel defenders: </h3>
-					<p>
-						Duel defenders is a tower defense game where you also have to attack the enemy base, hence the name.
-					</p>
-					<p>
-						This was a developer only project, I worked together with one other developer.
-					</p>
+					<!-- Description and tags -->
+					<div class="row aln-center">
+						<!-- Description -->
+						<div class="col-9">
+							<h3>About Duel defenders: </h3>
+							<p>
+								Duel defenders is a tower defense game where you also have to attack the enemy base, hence the name.
+							</p>
+							<p>
+								This was a developer only project, I worked together with one other developer.
+							</p>
+						</div>
+						<!-- Tags -->
+						<div class="col-3">
+							<div class="tooltip-always-visible">
+								<span class="tooltip-item-always-visible">Unity</span>
+								<span class="tooltip-item-always-visible">C#</span>
+								<span class="tooltip-item-always-visible">4 weeks</span>
+							</div>
+						</div>
+					</div>
 
 					<!-- Video -->
-					<h3>Trailer video: </h3>
+					<h3 style="padding-top: 2em;">Trailer video: </h3>
 					<div class="iframe-container">
 						<iframe src="https://www.youtube.com/embed/Ki3iYp7Cfnc?si=cAhUtQ6IfQMPiSAW"
 								title="YouTube video player" frameborder="0"
@@ -78,7 +91,8 @@
 						</div>
 						<div class="explanation-container">
 							<p>
-								The enemy AI in Duel Defenders was designed to dynamically choose the closest target and adjust its path accordingly. This required implementing a pathfinding algorithm that could handle multiple enemies simultaneously.
+								This wave generation system was a lot of fun to make, it was a bit of a challenge to make it so that the waves would get harder over time, but I managed to do it. The way I did this was by making a probability system, where the probability of an enemy being spawned was based on the wave number
+								and difficulty scale given to each enemy type.
 							</p>
 						</div>
 					</div>
@@ -240,7 +254,7 @@
 
 				</div>
 				<div class="inner">
-						<h4>Build towers</h4>
+						<h4>Building towers</h4>
 					<div class="video-explanation-container">
 						<div class="video-container">
 							<video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">

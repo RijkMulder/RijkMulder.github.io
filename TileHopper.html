@@ -44,17 +44,31 @@
 		</div>
 		<section class="wrapper style5">
 			<div class="inner">
-				<!-- Description -->
-				<h3>About Tile hopper: </h3>
-				<p>
-					Tile Hopper is a game where you have to reach the other side of the playing field whilst avoiding the vision cones of the enemies.
-				</p>
-				<p>
-					This was a solo project where I learned how to make a grid based game, which was challenging, but also a lot of fun.
-				</p>
+				<!-- Description and tags -->
+				<div class="row aln-center">
+					<!-- Description -->
+					<div class="col-9">
+						<h3>About Tile hopper: </h3>
+						<p>
+							Tile Hopper is a game where you have to reach the other side of the playing field whilst avoiding the vision cones of the enemies.
+						</p>
+						<p>
+							This was a solo project where I learned how to make a grid based game, which was challenging, but also a lot of fun.
+						</p>
+					</div>
+					<!-- Tags -->
+					<div class="col-3">
+						<div class="tooltip-always-visible">
+							<span class="tooltip-item-always-visible">Unity</span>
+							<span class="tooltip-item-always-visible">C#</span>
+							<span class="tooltip-item-always-visible">4 weeks</span>
+							<span class="tooltip-item-always-visible">Solo project</span>
+						</div>
+					</div>
+				</div>
 
 				<!-- Video -->
-				<h3>Trailer video: </h3>
+				<h3 style="padding-top: 2em;">Trailer video: </h3>
 				<div class="iframe-container">
 					<iframe src="https://www.youtube.com/embed/0rG2PfrcFyg?si=ubwz3kfzycbPIyum"
 							title="YouTube video player" frameborder="0"
@@ -118,21 +132,21 @@
              startOffset = new Vector3(dirtSize.x / 2, 0, dirtSize.z * 1.7f);
           }
 
-    // instantiate new tile
+          // instantiate new tile
           Tile newTile = Instantiate(dirtPrefab, new Vector3(pos.x + startOffset.x + j * offset.x, pos.y, pos.z + startOffset.z + i * offset.z), Quaternion.identity).GetComponent&lt;Tile&gt;();
           tiles.Add(newTile);
 
-    // set grid position of new tile
+          // set grid position of new tile
           int y = i % 2 != 0 ? i : i + 2;
           newTile.gridPos = new Vector2(j + 1, y);
-
-    // check if tilepos is that of the winning tile
+					
+          // check if tilepos is that of the winning tile
           if (newTile.gridPos == winningTilePos)
           {
-       // set TileState of this tile to WinTile
+             // set TileState of this tile to WinTile
              newTile.tileState = TileState.WinTile;
 
-       // instantiate flag on winning tile
+             // instantiate flag on winning tile
              MeshRenderer mesh = flag.GetComponent&lt;MeshRenderer&gt;();
              Vector3 flagOffset = new Vector3(0, mesh.bounds.size.y / 2, 0);
              Instantiate(flag, newTile.transform.position + flagOffset, Quaternion.identity);
@@ -154,7 +168,7 @@
 					<div class="explanation-container">
 						<p>
 							The enemy behaviour had the same problem as the map did, the damn hexagons, I had to figure out a way to make it select a new tile to move towards, but it would then obviously need to
-							know what tiles were next to it, and because the map is made out of hexagons there were six of them. I honestly don't know how this works anymore, especially the way I adjust the x-coordinate.
+							know what tiles were next to it, and because the map is made out of hexagons there were six of them.
 						</p>
 					</div>
 				</div>
