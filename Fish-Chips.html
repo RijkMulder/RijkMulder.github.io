@@ -44,25 +44,44 @@
             </div>
             <section class="wrapper style5">
                 <div class="inner">
-                    <!-- Description -->
-                    <h3>About Fish & Chips: </h3>
-                    <p>
-                        Fish & Chips is a simple 2d fishing game with a little twist, the fish you catch turn into gambling chips. Which you can use to buy upgrades.
-                    </p>
-                    <p>
-                        This project was made in collaboration with 3 students from Finland, and one fellow Dutch student (besides me), for a total of 2 developers and 3 artists.
-                        I had a lot of fun working with international students, it was a great experience and I learned a lot from it.
-                    </p>
-                    
+                    <!-- Description and tags -->
+                    <div class="row aln-center" style="padding: 0">
+                        <!-- Description -->
+                        <div class="col-9">
+                            <h3>About Fish & Chips: </h3>
+                            <p>
+                                Fish & Chips is a simple 2d fishing game with a little twist, the fish you catch turn
+                                into
+                                gambling chips. Which you can use to buy upgrades.
+                            </p>
+                            <p>
+                                This project was made in collaboration with 3 students from Finland, and one fellow
+                                Dutch
+                                student (besides me), for a total of 2 developers and 3 artists.
+                                I had a lot of fun working with international students, it was a great experience and I
+                                learned a lot from it.
+                            </p>
+                        </div>
+                        <!-- Tags -->
+                        <div class="col-3">
+                            <div class="tooltip-always-visible">
+                                <span class="tooltip-item-always-visible">Unity</span>
+                                <span class="tooltip-item-always-visible">C#</span>
+                                <span class="tooltip-item-always-visible">8 weeks</span>
+                                <span class="tooltip-item-always-visible">International</span>
+                                <span class="tooltip-item-always-visible"><a href="https://ark0z.itch.io/fishchips"
+                                                                             target="_blank">Itch project</a></span>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Video -->
-                    <h3>Trailer video: </h3>
+                    <h3 style="padding-top: 2em;">Trailer video: </h3>
                     <div class="iframe-container">
                         <iframe src="https://www.youtube.com/embed/q-Dq3sOhQWE?si=ihPrmYutaob4ygRK"
                                 title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowfullscreen></iframe>
                     </div>
-<!--                    <iframe src="webgl/index.html" width="960" height="600" style="border:none;"></iframe>-->
                 </div>
             </section>
         </article>
@@ -77,12 +96,12 @@
                 <div class="inner">
                     <h4>Fishing minigame</h4>
                     <div class="video-explanation-container">
-                        <div class="video-container" style="width: 50%;">
+                        <div class="video-container">
                             <video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
                                 <source src="assets/video/FishMinigame.mp4" type="video/mp4">
                             </video>
                         </div>
-                        <div class="explanation-container" style="width: 50%;">
+                        <div class="explanation-container">
                             <p>
                                 I have spent a lot of time making this minigame, especially figuring out how to make the hit-zones (I ended
                                 up making a custom mesh for them). 
@@ -131,12 +150,12 @@
                 <div class="inner">
                     <h4>Time management</h4>
                     <div class="video-explanation-container">
-                        <div class="video-container" style="width: 50%;">
+                        <div class="video-container">
                             <video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
                                 <source src="assets/video/TimeManager.mp4" type="video/mp4">
                             </video>
                         </div>
-                        <div class="explanation-container" style="width: 50%;">
+                        <div class="explanation-container">
                             <p>
                                 I have made the time management using the Unity TimeSpan, which sends an update through the EventManager every few (in game) minutes, which runs the entire game.
                             </p>
@@ -174,10 +193,10 @@
                 <div class="inner">
                     <h4>Inventory</h4>
                     <div class="video-explanation-container">
-                        <div class="video-container" style="width: 50%;">
+                        <div class="video-container">
                             <img src="images/Fish-Chips_Inventory.png" alt="Inventory" style="width: 100%; border-radius: 15px;">
                         </div>
-                        <div class="explanation-container" style="width: 50%;">
+                        <div class="explanation-container">
                             <p>
                                 The inventory consists of 2 parts: the daily inventory, and the all-time inventory.
                                 The trickiest part was making the bit for the daily inventory, which grouped all the fish of the same rarity together, which luckily
@@ -229,12 +248,12 @@
                 <div class="inner">
                     <h4>Logbook</h4>
                     <div class="video-explanation-container">
-                        <div class="video-container" style="width: 50%;">
+                        <div class="video-container">
                             <video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
                                 <source src="assets/video/Logbook.mp4" type="video/mp4">
                             </video>
                         </div>
-                        <div class="explanation-container" style="width: 50%;">
+                        <div class="explanation-container">
                             <p>
                                 Making the logbook was quite an interesting challenge, since I only had one week left to make it and finish the rest of the game.
                                 But luckily I managed to make it in time, albeit with not the prettiest code. But that's just how it is in the last week of development.

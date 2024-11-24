@@ -160,7 +160,7 @@ input, select, textarea {
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 0 0 0 0;]]
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -730,7 +730,7 @@ pre {
 			.row {
 				margin-top: 0;
 				margin-left: -1.5em;
-				padding: 10em 2em 1em 2em;
+				padding: 10em 0em 1em 1.5em;
 			}
 
 					.row > * {
@@ -979,7 +979,7 @@ pre {
 				}
 
 					.row > * {
-						padding: 0 0 0 1.5em;
+						padding: 0 0 0 0;
 					}
 
 					.row.gtr-uniform {
@@ -1207,7 +1207,7 @@ pre {
 				}
 
 					.row.gtr-50 > * {
-						padding: 0 0 0 1.5em;
+						padding: 0 0 0 0em;
 					}
 
 					.row.gtr-50.gtr-uniform {
@@ -1452,7 +1452,7 @@ pre {
 						}
 				
 							.row.gtr-50 > * {
-								padding: 0 0 0 1.5em;
+								padding: 0 0 0 0em;
 							}
 
 					.row.gtr-50.gtr-uniform {
@@ -1469,7 +1469,7 @@ pre {
 				}
 
 					.row > * {
-						padding: 0 0 0 1.5em;
+						padding: 0 0 0 0em;
 					}
 
 					.row.gtr-uniform {
@@ -1697,7 +1697,7 @@ pre {
 						}
 				
 							.row.gtr-50 > * {
-								padding: 0 0 0 1.5em;
+								padding: 0 0 0 0em;
 							}
 					.row.gtr-50.gtr-uniform {
 						margin-top: -11em;
@@ -2167,12 +2167,31 @@ pre {
 	white-space: nowrap; /* Prevent line breaks */
 }
 
+.tooltip-always-visible {
+	position: absolute;
+	visibility: visible; /* Make the tooltip always visible */
+	z-index: 2;
+	top: 55%; /* Center vertically */
+	left: 60%; /* Center horizontally */
+	transform: translate(-50%, -50%); /* Adjust centering */
+	opacity: 1; /* Ensure opacity is set to 1 */
+	padding: 5px; /* Add padding for better appearance */
+	white-space: nowrap; /* Prevent line breaks */
+}
+
 /* Add outline to each span within the tooltip */
 .tooltip-item {
 	display: inline-block; /* Display spans side by side */
 	margin-right: 5px; /* Add spacing between items */
 	padding: 5px; /* Add padding for better appearance */
 	border: 1px solid #ccc; /* Add border to each item */
+	border-radius: 3px; /* Add border radius to each item */
+}
+.tooltip-item-always-visible {
+	display: block; /* Display spans under one another */
+	margin-right: 5px; /* Add spacing between items */
+	padding: 5px; /* Add padding for better appearance */
+	border: 1px solid #1d242a; /* Add border to each item */
 	border-radius: 3px; /* Add border radius to each item */
 }
 
@@ -2837,7 +2856,7 @@ pre {
 /* Wrapper */
 
 	.wrapper {
-		padding: 6em 0 4em 0 ;
+		padding: 2em 0 2em 0 ;
 	}
 
 		.wrapper > .inner {
@@ -3592,7 +3611,7 @@ pre {
 						@media screen and (max-width: 736px) {
 
 							#header nav > ul > li > a {
-								padding: 0 0 0 1.5em;
+								padding: 0 1.5em;
 							}
 
 						}
@@ -4128,7 +4147,6 @@ summary {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: flex-start;
-	margin-bottom: 20px;
 }
 @media (max-width: 600px) {
 	.video-explanation-container {
@@ -4142,7 +4160,9 @@ summary {
 }
 
 .explanation-container {
-	padding: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
 }
 .video-container, .explanation-container {
 	width: 50%;

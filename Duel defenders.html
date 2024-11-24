@@ -40,17 +40,30 @@
 			</div>
 			<section class="wrapper style5">
 				<div class="inner">
-					<!-- Description -->
-					<h3>About Duel defenders: </h3>
-					<p>
-						Duel defenders is a tower defense game where you also have to attack the enemy base, hence the name.
-					</p>
-					<p>
-						This was a developer only project, I worked together with one other developer.
-					</p>
+					<!-- Description and tags -->
+					<div class="row aln-center" style="padding: 0">
+						<!-- Description -->
+						<div class="col-9">
+							<h3>About Duel defenders: </h3>
+							<p>
+								Duel defenders is a tower defense game where you also have to attack the enemy base, hence the name.
+							</p>
+							<p>
+								This was a developer only project, I worked together with one other developer.
+							</p>
+						</div>
+						<!-- Tags -->
+						<div class="col-3">
+							<div class="tooltip-always-visible">
+								<span class="tooltip-item-always-visible">Unity</span>
+								<span class="tooltip-item-always-visible">C#</span>
+								<span class="tooltip-item-always-visible">4 weeks</span>
+							</div>
+						</div>
+					</div>
 
 					<!-- Video -->
-					<h3>Trailer video: </h3>
+					<h3 style="padding-top: 2em;">Trailer video: </h3>
 					<div class="iframe-container">
 						<iframe src="https://www.youtube.com/embed/Ki3iYp7Cfnc?si=cAhUtQ6IfQMPiSAW"
 								title="YouTube video player" frameborder="0"
@@ -71,14 +84,15 @@
 				<div class="inner">
 					<h4>Wave generation</h4>
 					<div class="video-explanation-container">
-						<div class="video-container" style="width: 50%;">
+						<div class="video-container">
 							<video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
 								<source src="assets/video/WaveGeneration.mp4" type="video/mp4">
 							</video>
 						</div>
-						<div class="explanation-container" style="width: 50%;">
+						<div class="explanation-container">
 							<p>
-								The enemy AI in Duel Defenders was designed to dynamically choose the closest target and adjust its path accordingly. This required implementing a pathfinding algorithm that could handle multiple enemies simultaneously.
+								This wave generation system was a lot of fun to make, it was a bit of a challenge to make it so that the waves would get harder over time, but I managed to do it. The way I did this was by making a probability system, where the probability of an enemy being spawned was based on the wave number
+								and difficulty scale given to each enemy type.
 							</p>
 						</div>
 					</div>
@@ -172,12 +186,12 @@
 <div class="inner">
 		<h4>Towers</h4>
 	<div class="video-explanation-container">
-		<div class="video-container" style="width: 50%;">
+		<div class="video-container">
 			<video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
 				<source src="assets/video/Turret.mp4" type="video/mp4">
 			</video>
 		</div>
-		<div class="explanation-container" style="width: 50%;">
+		<div class="explanation-container">
 			<p>
 				This turret system is pretty straight forward, it checks if enemies are near it and which one is the closest, then proceeds to shoot that. This, of course, is the base turret class,
 				all turrets have their own script that inherrit from this.
@@ -240,14 +254,14 @@
 
 				</div>
 				<div class="inner">
-						<h4>Build towers</h4>
+						<h4>Building towers</h4>
 					<div class="video-explanation-container">
-						<div class="video-container" style="width: 50%;">
+						<div class="video-container">
 							<video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
 								<source src="assets/video/TowerPlace.mp4" type="video/mp4">
 							</video>
 						</div>
-						<div class="explanation-container" style="width: 50%;">
+						<div class="explanation-container">
 							<p>
 								At first, I had a bit of trouble making this system; I didn't know how to make it compact and still give it all the functionality I wanted it to have. When I began working on this, I made it have a reference to every kind of tower,
 								but then I realised that that wasn't necessary; it only needed to have a reference to the tower that it was going to build, so what I ended up doing was making the shop buttons instantiate an instance of this class, and giving it a turret refrence which that button is supposed to spawn.
