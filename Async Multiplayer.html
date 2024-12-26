@@ -38,7 +38,7 @@
 			<header
 					style="background-image: url('images/BannerBackground.png'); background-size: cover; background-position: top; background-repeat: no-repeat; color: #ffffff; text-align: center; padding: 10px;">
 				<div class="logo-container">
-					<img src="images/TileHopperLogo.png" alt="Your Logo">
+					<img src="images/Async_Multiplayer-banner.png" alt="Your Logo">
 				</div>
 			</header>
 		</div>
@@ -84,75 +84,69 @@
 				<h3>My contribution: </h3>
 			</div>
 			<div class="inner">
-				<h4>Map generation</h4>
+				<h4>Building</h4>
 				<div class="video-explanation-container">
 					<div class="video-container">
-						<img src="images/TileHopper_MapGen.png" alt="Map generation" style="width: 100%; border-radius: 15px;">
+						<video autoplay loop muted playsinline style="width: 100%; border-radius: 15px">
+							<source src="assets/video/Async_building.mp4" type="video/mp4">
+						</video>
 					</div>
 					<div class="explanation-container">
 						<p>
-							Because I decided to make the map out of hexagons, it was quite a challenge to make it spawn in correctly, luckily I figured out how to do it, though some things
-							are kind of magic, like how the offset.z has to be multiplied by 0.85f, which I only figured out because I tried out a bunch of diffrent variables. But in the end I think it
-							turned out quite good.
+							Once the player tries to build something, the game sends a request to the server to check if the player has enough resources to build the object, and if the tile is unoccupied.
 						</p>
 					</div>
 				</div>
 				<hr>
-						<h5 style="padding-bottom: 10px; margin: 0"><a href="https://gist.github.com/RijkMulder/58c0827a77616c7b649215802aee2518" target="_blank">View whole script.</a></h5>
-				<pre style="padding: 0px; margin: 0"><code class="language-cs" style="white-space: pre-wrap;user-select: text">
-    // create a grid level
- private void MakeLevel(Vector3 pos)
- {
-    // adjust dirtsize value (dirt size is size of one hexagon) based on gap variable
-    dirtSize.x += dirtSize.x * gap;
-    dirtSize.z += dirtSize.z * gap;
+						<h5 style="padding-bottom: 10px; margin: 0"><a href="https://gist.github.com/RijkMulder/2ef837d1e410627b97986484e815c449" target="_blank">View whole script.</a></h5>
+				<pre style="padding: 0px; margin: 0"><code class="language-php" style="white-space: pre-wrap;user-select: text">
+// try find tile in db
+$tile = $request->tile;
+$tolerance = 0.01;
+$stmt = $connectionResult->prepare(
+    "SELECT * FROM user_tiles WHERE user_id = :user_id 
+    AND ABS(tile_pos_x - :posX) < :tolerance 
+    AND ABS(tile_pos_y - :posY) < :tolerance"
+);
+$stmt->execute([
+    ':user_id' => $userid, 
+    ':posX' => $tile->posX, 
+    ':posY' => $tile->posY,
+    ':tolerance' => $tolerance
+]);
+$tileResult = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // calculate offset
-    Vector3 offset = new Vector3(dirtSize.x, 0, dirtSize.z * 0.85f);
-
-    Vector3 startOffset;
-
-    // choose which tile is the winning tile
-    winningTilePos = new Vector2((int)Random.Range(1, gridSize.x), gridSize.y);
-
-    // loop through rows and collumns
-    for (int i = 0; i < gridSize.y; i++)
-    {
-       for (int j = 0; j < gridSize.x; j++)
-       {
-          // decide start offset for each row based on being odd or even
-          if (i % 2 != 0)
-          {
-             startOffset = Vector3.zero;
-          }
-          else
-          {
-             startOffset = new Vector3(dirtSize.x / 2, 0, dirtSize.z * 1.7f);
-          }
-
-          // instantiate new tile
-          Tile newTile = Instantiate(dirtPrefab, new Vector3(pos.x + startOffset.x + j * offset.x, pos.y, pos.z + startOffset.z + i * offset.z), Quaternion.identity).GetComponent&lt;Tile&gt;();
-          tiles.Add(newTile);
-
-          // set grid position of new tile
-          int y = i % 2 != 0 ? i : i + 2;
-          newTile.gridPos = new Vector2(j + 1, y);
-					
-          // check if tilepos is that of the winning tile
-          if (newTile.gridPos == winningTilePos)
-          {
-             // set TileState of this tile to WinTile
-             newTile.tileState = TileState.WinTile;
-
-             // instantiate flag on winning tile
-             MeshRenderer mesh = flag.GetComponent&lt;MeshRenderer&gt;();
-             Vector3 flagOffset = new Vector3(0, mesh.bounds.size.y / 2, 0);
-             Instantiate(flag, newTile.transform.position + flagOffset, Quaternion.identity);
-          }
-       }
+// tile doesnt exist
+if ($tileResult == false) {
+    // check if request info is empty
+    if ($request->tile->tileType == null) {
+        $response->status = "emptyTileData";
+        $response->customMessage = "tile data sent was empty.";
+        $response->userData = GetUserData($connectionResult, $userid);
+        die(json_encode($response));
     }
- }
+    // check price
+    if (CheckPrice($connectionResult, $userid, $tile) == true) {
+        // update gold
+        UpdateGold($connectionResult, $userid, $tile);
 
+        // send succes response
+        $response->userData = GetUserData($connectionResult, $userid);
+        $response->status = "tileFree";
+        $response->customMessage = "succesfully placed building";
+        die(json_encode($response));
+    }
+    else {
+        $response->status = "notEnoughGold";
+        $response->customMessage = "user doesn't have enough gold to buy this building.";
+        die(json_encode($response));
+    }
+}
+
+else {
+    // tile already exists
+    include 'GetGold.php';
+}
 </code></pre>
 			</div>
 			<div class="inner">
