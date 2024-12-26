@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3de36d6-ab71-4723-8687-25bf6dc1288b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Async Multiplayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/Async Multiplayer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prism.js" beforeDir="false" afterPath="$PROJECT_DIR$/prism.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +61,7 @@
       <workItem from="1730738294849" duration="592000" />
       <workItem from="1734134377749" duration="194000" />
       <workItem from="1735220599338" duration="1547000" />
+      <workItem from="1735247944937" duration="1505000" />
     </task>
     <servers />
   </component>
